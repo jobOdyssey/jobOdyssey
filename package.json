@@ -1,0 +1,30 @@
+{
+  "name": "jobodyssey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "client": "npm start --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobOdyssey/jobOdyssey.git"
+  },
+  "author": "Robert Luo, Christopher Ma, Lanre, Jhonatan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jobOdyssey/jobOdyssey/issues"
+  },
+  "homepage": "https://github.com/jobOdyssey/jobOdyssey#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
