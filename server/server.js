@@ -5,7 +5,7 @@
 // import { Kind } from 'graphql/language';
 const express = require('express');
 const dotenv = require('dotenv');
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 
@@ -22,7 +22,7 @@ const typeDefs = gql`
   # Date and Timestamp types
   scalar DateType
   scalar TimestampType
-  
+
   # Enum type for status
   enum Status {
     PLANNED
@@ -32,7 +32,27 @@ const typeDefs = gql`
     OFFERED
   }
 
-  # This "Application" type defines the queryable fields for every application in our data source.
+  type Error {
+    field: String
+    message: String
+  }
+
+  # User type
+  type User {
+    id: ID
+    username: String
+    email: String
+    password: String
+    freeText1: String
+    freeText2: String
+  }
+
+  type AddResponse {
+    errors: [Error]
+    user: User
+  }
+
+  # Application type
   type Application {
     id: ID
     user_id: String
@@ -45,12 +65,25 @@ const typeDefs = gql`
     notes: String
   }
 
+  # Input types for reusable inputs
+  input UserInfo {
+    username: String!
+    password: String!
+    email: String
+  }
+
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "applications" query returns an array of zero or more applications (defined above).
   type Query {
     hello: String
     applications: [Application]
+  }
+
+  type Mutation {
+    addUser(userInfo: UserInfo!): AddResponse
+    login(userInfo: UserInfo!): String
+    test: String
   }
 `;
 
@@ -75,34 +108,67 @@ const resolvers = {
   TimestampType: new GraphQLScalarType({
     name: 'Timestamp',
     serialize(date) {
-      return (date instanceof Date) ? date.getTime() : null
+      return date instanceof Date ? date.getTime() : null;
     },
     parseValue(date) {
-      try { return new Date(value); }
-      catch (error) { return null; }
+      try {
+        return new Date(value);
+      } catch (error) {
+        return null;
+      }
     },
     parseLiteral(ast) {
       if (ast.kind === Kind.INT) {
         return new Date(parseInt(ast.value, 10));
       }
-      else if (ast.kind === Kind.STRING) {
+      if (ast.kind === Kind.STRING) {
         return this.parseValue(ast.value);
       }
-      else {
-        return null;
-      }
+
+      return null;
     },
   }),
   Query: {
-    hello: () => "hello world!"
-  }
-}
+    hello: () => 'hello world!',
+  },
+  Mutation: {
+    login: (parent, args, context, info) => {
+      return args.userInfo.username;
+    },
+    addUser: () => ({
+      errors: [
+        {
+          field: 'username',
+          message: 'duplicate username',
+        },
+      ],
+      user: {
+        id: 1,
+        username: 'test',
+        email: 'test@test.com',
+        password: 'password1234',
+        freeText1: 'free text 1',
+        freeText2: 'free text 2',
+      },
+    }),
+    test: async (parent, args, context, info) => {
+      return 'test';
+    },
+  },
+};
 
 // Apollo Server setup
-const server = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req, res }) => ({ req, res }),
+});
 
 // GraphQL listener
-server.listen().then(({ url }) => console.log(`Server started at ${url}`));
+apolloServer.applyMiddleware({ app, cors: false });
 
 // Epress listener
-app.listen(process.env.PORT, console.log(`Server is in ${process.env.NODE_ENV} mode, listening on port ${process.env.PORT}`));
+app.listen(
+  process.env.PORT,
+  console.log(`Server is in ${process.env.NODE_ENV} mode, ready at http://localhost:${process.env.PORT}${apolloServer.graphqlPath}`)
+);
