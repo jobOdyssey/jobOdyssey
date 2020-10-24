@@ -7,6 +7,8 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {AppTheme} from './src/theme';
 import {HomeScreen, LoginScreen, SignupScreen} from './src/ui';
 
+// this is a stag of all screens
+// the screens will be popped and pushed based on user's actions
 const Stack = createStackNavigator();
 
 const App = () => {
