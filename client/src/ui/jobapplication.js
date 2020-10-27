@@ -31,7 +31,7 @@ export default JobApplication = ({route,navigation}) => {
   const createdInputRef = React.useRef();
   const notesInputRef = React.useRef();
 
-  const [jobapplication,setJobApplication] = useState(defaultValues);
+  const [jobapplication,setJobApplication] = useState(null);
   const [shouldShowDatepicker, setShowDateTimePicker] = useState(false);
 
   console.log("route", route);
@@ -42,12 +42,20 @@ export default JobApplication = ({route,navigation}) => {
   useEffect(() => {
     // connect to the API to bring the     
     if (jobApplicationID) {
+      console.log("get existing jobapplication", jobApplicationID)
       GetJobApplication(jobApplicationID)
       .then(data => {
+        console.log("jobapplication: ", data);
         setJobApplication({idEdit : true,...data})
-      })      
+      }) .catch(err => { 
+        console.log("error when getting the job application",err);        
+      });         
+    } else {
+      setJobApplication({...defaultValues})
     }
   }, []); 
+
+  console.log("Job application to render: ", jobapplication);
 
   const showDatepicker = (show) => {
     setShowDateTimePicker(show);
@@ -55,15 +63,19 @@ export default JobApplication = ({route,navigation}) => {
 
   console.log(errors);
 
-  const MoveToHome = async () => {
-    navigation.navigate('Home');
+  const MoveToDashboard = async () => {
+    navigation.navigate('SocialLogin');
   }
   const onSave = (data) => {
     console.log("this is the form", data);
   }
 
+  const onDelete = () => {
+    console.log("Deleted called");
+  }
+
   return (
-    <SafeAreaView style={jobApplicationStyles.container}>
+    jobapplication &&<SafeAreaView style={jobApplicationStyles.container}>
       <ScrollView
             style={jobApplicationStyles.scrollView}      
         >
@@ -225,7 +237,17 @@ export default JobApplication = ({route,navigation}) => {
       </>
     }
 
-    <Button title="Save" onPress={handleSubmit(onSave)} />
+    <View style={jobApplicationStyles.buttonContainer}>
+      <View style={jobApplicationStyles.button} >
+        {
+          jobapplication.idEdit ? <Button title="Delete" onPress={() => onDelete()} /> : <Button title="Cancel" onPress={() => MoveToDashboard()} />
+        }        
+      </View> 
+      <View style={jobApplicationStyles.button} >
+        <Button title="Save" onPress={handleSubmit(onSave)} />
+      </View>
+    </View>
+    
   </ScrollView>
   </SafeAreaView>
   );
@@ -274,4 +296,12 @@ export const jobApplicationStyles = StyleSheet.create({
         flex: 1,
         marginTop: 5,
       },
+      button: {
+        width: '45%',
+      },
+      buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+      }
   });

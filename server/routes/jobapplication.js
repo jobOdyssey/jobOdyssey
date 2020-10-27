@@ -2,15 +2,16 @@ import express from 'express';
 var router = express.Router();
 
 const testObject = {    
-    company: 'company',
+    company: 'company from server',
     status: 'Planned',
-    position: 'position',
+    position: 'position from server',
     url: 'http://googgle.com',
     recentActivity: new Date(),
-    notes: 'this are some notes',
+    notes: 'this are some notes from server',
 };
 
-router.get('/:id', (req, res) => {                    
+router.get('/:id', (req, res) => {       
+    console.log("get job application",req.param.id)
     res.json({...testObject, id: req.param.id});    
 });
 

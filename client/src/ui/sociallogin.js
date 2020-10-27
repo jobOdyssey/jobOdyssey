@@ -23,7 +23,7 @@ import { GetJobApplication , SetUserSession, GetUserInfo } from '../Helpers/apih
 
 console.log("SERVER_URL",Constants.SERVER_URL)
 
-const SocialLogin = () => {    
+const SocialLogin = ({navigation}) => {    
   const [userData,setUserData] = useState(null);
 
   const lookForUserInfo = () => {    
@@ -72,6 +72,13 @@ const SocialLogin = () => {
               onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}>
               <Text style={styles.buttonText} >
                 {userData === null ? "Connect via Google" : "You are connected !"}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.body}>
+            <TouchableOpacity style={styles.socialBtn}
+              onPress={() => navigation.navigate('JobApplication', { jobApplicationID: 35})}>
+              <Text style={styles.buttonText} >
+                {"Move to Edit"}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
