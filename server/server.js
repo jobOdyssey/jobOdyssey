@@ -1,14 +1,10 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import { ApolloServer, gql } from 'apollo-server';
-// import { GraphQLScalarType } from 'graphql';
-// import { Kind } from 'graphql/language';
 const express = require('express');
 const dotenv = require('dotenv');
-const Sequelize = require('sequelize');
+// const { Sequelize, DataTypes } = require('sequelize');
 const { ApolloServer, gql } = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
+const { User, Application } = require('./sequelize.js');
 
 // Express set up
 const app = express();
@@ -16,18 +12,8 @@ const app = express();
 // Setting up environment variables
 dotenv.config();
 
-// Sequelize setup and initiation
-const { DATABASE_URL } = process.env;
-const sequelize = new Sequelize(DATABASE_URL);
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
+// SEQUELIZE TESTS
+User.findAll().then((res) => res.forEach((user) => console.log(user.dataValues.id)));
 
 // graphQL typeDefs
 const typeDefs = gql`
@@ -57,8 +43,6 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    freeText1: String
-    freeText2: String
   }
 
   type AddResponse {
@@ -92,6 +76,7 @@ const typeDefs = gql`
   type Query {
     hello: String
     applications: [Application]
+    users: [User]
   }
 
   type Mutation {
@@ -144,6 +129,17 @@ const resolvers = {
   }),
   Query: {
     hello: () => 'hello world!',
+    users: async () => {
+      const allUsers = await User.findAll();
+      return allUsers.map((user) => {
+        return {
+          id: user.dataValues.id,
+          username: user.dataValues.username,
+          email: user.dataValues.email,
+          password: user.dataValues.password,
+        };
+      });
+    },
   },
   Mutation: {
     login: (parent, args, context, info) => {
@@ -166,7 +162,8 @@ const resolvers = {
       },
     }),
     test: async (parent, args, context, info) => {
-      return 'test';
+      const test = await User.findAll();
+      return JSON.stringify(test);
     },
   },
 };
