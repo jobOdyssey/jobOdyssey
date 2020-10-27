@@ -1,10 +1,7 @@
 import Constants from '../../env'
 
-import CookieManager from 'react-native-cookies'
+import CookieManager from '@react-native-community/cookies';
 import AsyncStorage from '@react-native-community/async-storage';
-
-const SIG_KEY = '@jobOdyssey:express:sess.sig';
-const SESSION_KEY = '@jobOdyssey:express:sess';
 
 const API_URL = `${Constants.SERVER_URL}/api`;
 
@@ -19,37 +16,70 @@ const getParams = (url) => {
     return params;
 }
 
-
-let SetUserSession = async (url) => {
-  const params = getParams(url);  
-  console.log("params from url", params);
-  await AsyncStorage.setItem(SIG_KEY,params.sig);
-  await AsyncStorage.setItem(SESSION_KEY,params.session);
+const GetHeadersFromSession = () => {
+  var headers = new Headers();
+  headers.append('Accept', 'application/json');
+  headers.append('credentials', 'include');  
+  return headers;
 }
 
-let GetUserInfo = async () => {
-  await CookieManager.clearAll() //clearing cookies stored 
-  //natively before each 
-  //request
-  const sig = await AsyncStorage.getItem(SIG_KEY);
-  const sess = await AsyncStorage.getItem(SESSION_KEY);
+
+const SetUserSession = async (url) => {
+  const params = getParams(url);    
   
-  return fetch(`${API_URL}/user`, {
-  headers: {
-  'cookie': cookie,
-  'Content-Type': 'application/json',
-   credentials: 'include',
-  }
-  }).then(res => res.json());
+  CookieManager.set(Constants.SERVER_URL, {
+    name: 'express:sess.sig',
+    value: params.sig,
+    domain: 'some domain',
+    path: '/'        
+  }).then((done) => {
+    console.log('CookieManager.set express:sess.sig=>', done);
+  });
+
+  CookieManager.set(Constants.SERVER_URL, {
+    name: 'express:sess',
+    value: params.session,
+    domain: 'some domain',
+    path: '/'        
+  }).then((done) => {
+    console.log('CookieManager.set express:sess=>', done);
+  });
+
+  console.log("Session Stored!")
 }
 
-let GetJobApplication = (id) => {
-    return fetch(`${API_URL}/jobapplications/${id}`, {
+
+
+const GetUserInfo = async () => {        
+    const headers = GetHeadersFromSession();  
+    return fetch(`${API_URL}/user`, {
+      headers: headers
+    }).then(res => { 
+      console.log("response",res.ok, res.status)
+      if (!res.ok) {
+        throw new Error("HTTP status " + res.status);
+      } else {        
+        return res.json();
+      }          
+    });  
+}
+
+const GetJobApplication = (id) => {
+    const headers = GetHeadersFromSession();    
+
+    return fetch(`${API_URL}/jobapplication/${id}`, {
         method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
+        headers: headers
   }).then(res => res.json());
 }
 
-export { GetJobApplication , SetUserSession, GetUserInfo }
+const GetJobApplications = () => {
+  const headers = GetHeadersFromSession();    
+
+  return fetch(`${API_URL}/jobapplication`, {
+      method: 'GET',
+      headers: headers
+  }).then(res => res.json());
+}
+
+export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications }

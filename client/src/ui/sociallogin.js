@@ -9,6 +9,7 @@ import {
   View,
   Text,
   StatusBar,
+  Image,
  } from 'react-native';
 
  import {
@@ -22,30 +23,31 @@ import { GetJobApplication , SetUserSession, GetUserInfo } from '../Helpers/apih
 
 console.log("SERVER_URL",Constants.SERVER_URL)
 
-const SocialLogin = () => {  
-  const [data, setData] = useState("");
+const SocialLogin = () => {    
   const [userData,setUserData] = useState(null);
+
+  const lookForUserInfo = () => {    
+    GetUserInfo()
+    .then(user => {
+      console.log("user: ", user);
+      setUserData(user)
+    })
+    .catch(err => { console.log("error when getting the user",err);
+      setUserData(null);
+    });      
+  }
 
   const handleOpenURL = ({ url }) => {
       if (url.indexOf("?sig") !== -1) {        
-          console.log("redirect succesfull",url);
-          setData(url);
-          /*
-          SetUserSession(url);
-          GetUserInfo()
-          .then(user => setUserData(user));
-          */
+          console.log("redirect succesfull");          
+          SetUserSession(url);         
+          lookForUserInfo();
       }
   };
 
-  const queryUserData = async () => {
-   
-  }
-
-
-  useEffect(() => {
-    // Your code here
+  useEffect(() => {    
     Linking.addEventListener('url', handleOpenURL);
+    lookForUserInfo();
   }, []);
 
   return (
@@ -55,15 +57,21 @@ const SocialLogin = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          <Text>
-            {data === "" ? null : data}
-          </Text>
+          <Header />          
+            {
+             userData === null ? null :  <View style={styles.imageContainer}>
+            <Text>Welcome { userData.name.givenName }</Text>   
+            <Image
+             style={{width: 50, height:50}}
+             source={{uri: userData.photos[0].value}}             
+             />            
+             </View>
+            }          
           <View style={styles.body}>
             <TouchableOpacity style={styles.socialBtn}
               onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}>
               <Text style={styles.buttonText} >
-                {data === "" ? "Connect via Google" : "You are connected !"}</Text>
+                {userData === null ? "Connect via Google" : "You are connected !"}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -85,6 +93,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
