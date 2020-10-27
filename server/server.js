@@ -5,6 +5,8 @@ import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import cookieSession from 'cookie-session'
 import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
+import jobapplicationRouter from './routes/jobapplication.js'
 
 
 // Setting up environment variables
@@ -41,6 +43,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // register routes
 app.use('/', authRouter);
+
+app.use('/api/user', userRouter);
+
+app.use('/api/jobapplication', jobapplicationRouter);
+
+userRouter
 
 
 // GraphQL endpoint

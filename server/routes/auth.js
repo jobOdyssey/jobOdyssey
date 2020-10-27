@@ -45,7 +45,9 @@ router.get('/auth/google', passport.authenticate('google', {
 // Google Oauth2 callback url
 router.get('/auth/google/callback', passport.authenticate('google'), (req, res, next) => {
     console.log("callback called");
-    res.redirect("jobodyssey://jobodyssey.io?id=" + req.user.id);
+    var sig = req.cookies['express:sess.sig'];
+    var session = req.cookies['express:sess']
+    res.redirect("jobodyssey://jobodyssey.io?sig=" + sig + "&session=" + session);
 });
 
 router.get('/logout', (req, res) => {
