@@ -5,6 +5,7 @@
 // import { Kind } from 'graphql/language';
 const express = require('express');
 const dotenv = require('dotenv');
+const Sequelize = require('sequelize');
 const { ApolloServer, gql } = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
@@ -14,6 +15,19 @@ const app = express();
 
 // Setting up environment variables
 dotenv.config();
+
+// Sequelize setup and initiation
+const { DATABASE_URL } = process.env;
+const sequelize = new Sequelize(DATABASE_URL);
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 // graphQL typeDefs
 const typeDefs = gql`
