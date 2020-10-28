@@ -45,7 +45,10 @@ export default JobApplication = ({route,navigation}) => {
       console.log("get existing jobapplication", jobApplicationID)
       GetJobApplication(jobApplicationID)
       .then(data => {
+        data.recentActivity = new Date(data.recentActivity);
+        data.created = new Date(data.created);
         console.log("jobapplication: ", data);
+        console.log("recent activity type", typeof data.recentActivity, data.recentActivity )
         setJobApplication({idEdit : true,...data})
       }) .catch(err => { 
         console.log("error when getting the job application",err);        
@@ -167,13 +170,13 @@ export default JobApplication = ({route,navigation}) => {
     {errors.url && <Text style={jobApplicationStyles.error}> { "Not a Valid URL" }</Text>}
     
     <Text style={jobApplicationStyles.label}>Recent Activity</Text>
-    <View style={ {...jobApplicationStyles.inputContainer,flex:1,flexDirection: 'row'  }}> 
+    <View style={ jobApplicationStyles.inputDateContainer }> 
     <Controller
       control={control}            
       render={({ onChange, onBlur, value }) => (
       <>        
           <TextInput
-            // style={jobApplicationStyles.input}
+            style={{ flex: 1 }}
             onBlur={onBlur}          
             value={value && value.toString('YYYY-MM-dd')}  
             ref= {recentActivityInputRef}  
@@ -204,13 +207,13 @@ export default JobApplication = ({route,navigation}) => {
     {errors.recentActivity && <Text style={jobApplicationStyles.error}> { "Not a Valid URL" }</Text>}
 
     <Text style={jobApplicationStyles.label}>Notes</Text>
-    <View style={jobApplicationStyles.inputContainer}>    
+    <View style={jobApplicationStyles.inputMultilineContainer}>    
     <Controller
       control={control}      
       rules = { {required: "This is required"} }
       render={({ onChange, onBlur, value }) => (
         <TextInput
-          style={jobApplicationStyles.input}
+          style={jobApplicationStyles.inputMultiline}
           onBlur={onBlur}
           onChangeText={value => onChange(value)}
           value={value}
@@ -276,12 +279,37 @@ export const jobApplicationStyles = StyleSheet.create({
       margin: 5,
       height: 50,          
     },
+    inputDate: {
+      margin: 5,
+      height: 50,          
+    },
+    inputMultiline: {
+      margin: 5,
+      height: 150,  
+      textAlignVertical: 'top'        
+    },
     inputContainer: {
       borderLeftWidth: 2,
       borderRightWidth: 2,
       borderTopWidth : 2,
       borderBottomWidth : 2,
       height: 50
+    },
+    inputMultilineContainer: {
+      borderLeftWidth: 2,
+      borderRightWidth: 2,
+      borderTopWidth : 2,
+      borderBottomWidth : 2,
+      height: 150
+    },
+    inputDateContainer: {
+      borderLeftWidth: 2,
+      borderRightWidth: 2,
+      borderTopWidth : 2,
+      borderBottomWidth : 2,
+      height: 50,
+      flex:1,
+      flexDirection: 'row'
     },
     board: {
         justifyContent: 'space-between',

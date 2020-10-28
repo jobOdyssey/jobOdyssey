@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
@@ -57,7 +56,6 @@ const SocialLogin = ({navigation}) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />          
             {
              userData === null ? null :  <View style={styles.imageContainer}>
             <Text>Welcome { userData.name.givenName }</Text>   

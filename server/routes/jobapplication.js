@@ -7,7 +7,8 @@ const testObject = {
     position: 'position from server',
     url: 'http://googgle.com',
     recentActivity: new Date(),
-    notes: 'this are some notes from server',
+    notes: 'these are some notes from server',
+    created: new Date()
 };
 
 router.get('/:id', (req, res) => {       
