@@ -12,7 +12,8 @@ const User = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false,
+      defaultValue: Sequelize.UUIDV4,
+      unique: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -41,7 +42,8 @@ const Application = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      unique: true,
     },
     user_id: {
       type: DataTypes.UUID,
@@ -61,14 +63,16 @@ const Application = sequelize.define(
     },
     created_at: {
       type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
       allowNull: false,
     },
     recent_activity: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM('planned', 'applied', 'rejected', 'interview scheduled', 'offered'),
+      type: DataTypes.ENUM('PLANNED', 'APPLIED', 'REJECTED', 'INTERVIEW_SCHEDULED', 'OFFERED'),
       allowNull: false,
     },
     notes: {
