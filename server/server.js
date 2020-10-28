@@ -145,6 +145,13 @@ const resolvers = {
   //     return null;
   //   },
   // }),
+  Status: {
+    PLANNED: 'planned',
+    APPLIED: 'applied',
+    REJECTED: 'rejected',
+    INTERVIEW_SCHEDULED: 'interview scheduled',
+    OFFERED: 'offered',
+  },
   Application: {
     notes: (parent, args) => {
       console.log('Application parent ->', parent);
