@@ -80,7 +80,8 @@ const typeDefs = gql`
   type Query {
     hello: String
     getAllUsers: [User]
-    getUserApplications(userId: ID): [Application]
+    getUserApplications(userId: ID!): [Application]
+    getApplicationData(applicationId: ID!): Application
   }
 
   type Mutation {

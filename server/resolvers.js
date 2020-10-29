@@ -10,11 +10,6 @@ const resolvers = {
     INTERVIEW_SCHEDULED: 'interview scheduled',
     OFFERED: 'offered',
   },
-  Application: {
-    notes: (parent, args) => {
-      console.log('Application parent ->', parent);
-    },
-  },
   Query: {
     hello: () => 'hello world!',
     getAllUsers: async () => {
@@ -43,6 +38,14 @@ const resolvers = {
         status: application.dataValues.status,
         notes: application.dataValues.notes,
       }));
+    },
+    getApplicationData: async (parent, { applicationId }) => {
+      const appData = await Application.findOne({
+        where: {
+          id: applicationId,
+        },
+      });
+      return appData;
     },
   },
   Mutation: {
@@ -98,6 +101,7 @@ const resolvers = {
         },
         returning: true,
       });
+
       return editedApp[1][0].dataValues;
     },
     archiveApplication: async (parent, { id }) => {
