@@ -20,6 +20,7 @@ const typeDefs = gql`
   # User type
   type User {
     id: ID
+    social_id: String
     username: String
     email: String
     password: String

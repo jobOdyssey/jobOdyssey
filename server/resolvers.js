@@ -22,7 +22,9 @@ const resolvers = {
         password: user.dataValues.password,
       }));
     },
-    getUserApplications: async (parent, { userId }) => {
+    getUserApplications: async (parent, { userId }, context) => {
+      console.log("context req user",context.user)
+      //console.log("context res",context.res)      
       const userApps = await Application.findAll({
         where: {
           user_id: userId,

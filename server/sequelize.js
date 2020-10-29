@@ -17,6 +17,11 @@ const User = sequelize.define(
       defaultValue: Sequelize.UUIDV4,
       unique: true,
     },
+    social_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
