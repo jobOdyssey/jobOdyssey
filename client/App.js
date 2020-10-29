@@ -16,7 +16,7 @@ const App = () => {
     <GlobalProvider>
       <StatusBar
           hidden={false}
-          backgroundColor={glbState.theme ? glbState.theme.primary : ''}
+          backgroundColor={glbState.state ? glbState.state.themeScheme.primary : ''}
           barStyle="light-content"
       />
       <MainScreen />

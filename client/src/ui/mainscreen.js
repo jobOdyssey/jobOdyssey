@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 const MainScreen = () => {
 
   const glbState = useAppGlobalState();
-  console.log('Context Global Store :: ', glbState);
+
   return (
     <PaperProvider theme={AppTheme}>
       <NavigationContainer>
@@ -29,7 +29,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: '#aed581',
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -43,7 +43,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: '#aed581',
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -57,7 +57,7 @@ const MainScreen = () => {
             options={{
               title: 'Sign Up',
               headerStyle: {
-                backgroundColor: '#aed581',
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -71,7 +71,7 @@ const MainScreen = () => {
             options={{
               title: 'Jobs....',
               headerStyle: {
-                backgroundColor: '#aed581',
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -85,7 +85,7 @@ const MainScreen = () => {
             options={{
               title: 'JobApplication....',
               headerStyle: {
-                backgroundColor: '#aed581',
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
