@@ -14,11 +14,12 @@ const GoogleStrategy = passportGoogle.Strategy;
 
 passport.serializeUser((user, done) => {
     console.log("serialize user", user)
-    done(null, user);
+    done(null, user.id);
 })
 
-passport.deserializeUser((user, done) => {
-    console.log("dserialize user", user)
+passport.deserializeUser(async (id, done) => {
+    console.log("dserialize user",id)
+    const user = await User.findOne({ where: { id: id } });    
     done(null, user)
 })
 

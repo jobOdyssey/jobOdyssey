@@ -66,7 +66,9 @@ userRouter
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req, res }) => ({ req, res }),
+  context: ({ req, res }) => ({ req, res, 
+    getUser: () => req.user,  
+    logout: () => req.logout() }),
 });
 
 

@@ -12,7 +12,15 @@ const resolvers = {
     OFFERED: 'offered',
   },
   Query: {
-    hello: () => 'hello world!',
+    hello: async (parent, { }, context) => {
+      console.log("cookies ", context.req.cookies);
+      // if user not authenticated return null and status 403
+      if (!context.getUser()){        
+        context.res.status(403);
+        return null;
+      }
+      return 'hello world!'
+    },
     getAllUsers: async () => {
       const allUsers = await User.findAll();
       return allUsers.map((user) => ({
@@ -22,12 +30,12 @@ const resolvers = {
         password: user.dataValues.password,
       }));
     },
-    getUserApplications: async (parent, { userId }, context) => {
-      console.log("context req user",context.user)
+    getUserApplications: async (parent, { }, context) => {
+      console.log("context req user",context.getUser())
       //console.log("context res",context.res)      
       const userApps = await Application.findAll({
         where: {
-          user_id: userId,
+          user_id: context.getUser().id,
         },
       });
       return userApps.map((application) => ({
