@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* clientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* clientTests.m */; };
+		00E356F31AD99517003FC87E /* JobOdysseyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* JobOdysseyTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* clientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* clientTests.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* JobOdysseyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* JobOdysseyTests.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		81D8A753923F61081B4FD227 /* libPods-client-clientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FC1BD1AB0271CFCD8C8A7B /* libPods-client-clientTests.a */; };
-		B6B9AF1EBD890B7A21C4FD51 /* libPods-client-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 814C75972D921C5BF1F54DF5 /* libPods-client-tvOS.a */; };
-		F25F4855A8EC52BF75EBC451 /* libPods-client-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE82BD118D3E4D838B83C827 /* libPods-client-tvOSTests.a */; };
-		F3DBE7152E1E64CFE4724760 /* libPods-client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC0272476B328F869B6722 /* libPods-client.a */; };
+		81D8A753923F61081B4FD227 /* libPods-JobOdyssey-JobOdysseyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FC1BD1AB0271CFCD8C8A7B /* libPods-JobOdyssey-JobOdysseyTests.a */; };
+		B6B9AF1EBD890B7A21C4FD51 /* libPods-JobOdyssey-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 814C75972D921C5BF1F54DF5 /* libPods-JobOdyssey-tvOS.a */; };
+		F25F4855A8EC52BF75EBC451 /* libPods-JobOdyssey-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE82BD118D3E4D838B83C827 /* libPods-JobOdyssey-tvOSTests.a */; };
+		F3DBE7152E1E64CFE4724760 /* libPods-JobOdyssey.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AC0272476B328F869B6722 /* libPods-JobOdyssey.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,45 +28,45 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = client;
+			remoteInfo = JobOdyssey;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "client-tvOS";
+			remoteInfo = "JobOdyssey-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* clientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* JobOdysseyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobOdysseyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* clientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clientTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = client.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = client/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = client/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = client/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = client/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = client/main.m; sourceTree = "<group>"; };
-		17AC0272476B328F869B6722 /* libPods-client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-client.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		255C255678075B74C08DD16B /* Pods-client-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOS.release.xcconfig"; path = "Target Support Files/Pods-client-tvOS/Pods-client-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* client-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "client-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* client-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "client-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C5B26DF82536E308D016507 /* Pods-client-clientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-clientTests.debug.xcconfig"; path = "Target Support Files/Pods-client-clientTests/Pods-client-clientTests.debug.xcconfig"; sourceTree = "<group>"; };
-		46C5D35F262582F7DC71619E /* Pods-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client.release.xcconfig"; path = "Target Support Files/Pods-client/Pods-client.release.xcconfig"; sourceTree = "<group>"; };
-		4E5D675CBEB4C9CBAF253130 /* Pods-client-clientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-clientTests.release.xcconfig"; path = "Target Support Files/Pods-client-clientTests/Pods-client-clientTests.release.xcconfig"; sourceTree = "<group>"; };
-		6DD09EBD840C7813D41EDDE4 /* Pods-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client.debug.xcconfig"; path = "Target Support Files/Pods-client/Pods-client.debug.xcconfig"; sourceTree = "<group>"; };
-		814C75972D921C5BF1F54DF5 /* libPods-client-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-client-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = client/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		925ADE64A1FFB72A936E425D /* Pods-client-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-client-tvOSTests/Pods-client-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		A28A9E31860102E8601F1886 /* Pods-client-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-client-tvOS/Pods-client-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		A8FC1BD1AB0271CFCD8C8A7B /* libPods-client-clientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-client-clientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE82BD118D3E4D838B83C827 /* libPods-client-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-client-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* JobOdysseyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobOdysseyTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* JobOdyssey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobOdyssey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = JobOdyssey/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = JobOdyssey/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JobOdyssey/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = JobOdyssey/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JobOdyssey/main.m; sourceTree = "<group>"; };
+		17AC0272476B328F869B6722 /* libPods-JobOdyssey.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JobOdyssey.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		255C255678075B74C08DD16B /* Pods-JobOdyssey-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-tvOS.release.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-tvOS/Pods-JobOdyssey-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* JobOdyssey-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JobOdyssey-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* JobOdyssey-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JobOdyssey-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C5B26DF82536E308D016507 /* Pods-JobOdyssey-JobOdysseyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-JobOdysseyTests.debug.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-JobOdysseyTests/Pods-JobOdyssey-JobOdysseyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		46C5D35F262582F7DC71619E /* Pods-JobOdyssey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey.release.xcconfig"; path = "Target Support Files/Pods-JobOdyssey/Pods-JobOdyssey.release.xcconfig"; sourceTree = "<group>"; };
+		4E5D675CBEB4C9CBAF253130 /* Pods-JobOdyssey-JobOdysseyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-JobOdysseyTests.release.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-JobOdysseyTests/Pods-JobOdyssey-JobOdysseyTests.release.xcconfig"; sourceTree = "<group>"; };
+		6DD09EBD840C7813D41EDDE4 /* Pods-JobOdyssey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey.debug.xcconfig"; path = "Target Support Files/Pods-JobOdyssey/Pods-JobOdyssey.debug.xcconfig"; sourceTree = "<group>"; };
+		814C75972D921C5BF1F54DF5 /* libPods-JobOdyssey-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JobOdyssey-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = JobOdyssey/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		925ADE64A1FFB72A936E425D /* Pods-JobOdyssey-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-tvOSTests/Pods-JobOdyssey-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		A28A9E31860102E8601F1886 /* Pods-JobOdyssey-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-tvOS/Pods-JobOdyssey-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A8FC1BD1AB0271CFCD8C8A7B /* libPods-JobOdyssey-JobOdysseyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JobOdyssey-JobOdysseyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE82BD118D3E4D838B83C827 /* libPods-JobOdyssey-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JobOdyssey-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FF449FE6FE39DE29B3FA0F92 /* Pods-client-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-client-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-client-tvOSTests/Pods-client-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF449FE6FE39DE29B3FA0F92 /* Pods-JobOdyssey-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobOdyssey-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-JobOdyssey-tvOSTests/Pods-JobOdyssey-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81D8A753923F61081B4FD227 /* libPods-client-clientTests.a in Frameworks */,
+				81D8A753923F61081B4FD227 /* libPods-JobOdyssey-JobOdysseyTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3DBE7152E1E64CFE4724760 /* libPods-client.a in Frameworks */,
+				F3DBE7152E1E64CFE4724760 /* libPods-JobOdyssey.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6B9AF1EBD890B7A21C4FD51 /* libPods-client-tvOS.a in Frameworks */,
+				B6B9AF1EBD890B7A21C4FD51 /* libPods-JobOdyssey-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +98,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F25F4855A8EC52BF75EBC451 /* libPods-client-tvOSTests.a in Frameworks */,
+				F25F4855A8EC52BF75EBC451 /* libPods-JobOdyssey-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* clientTests */ = {
+		00E356EF1AD99517003FC87E /* JobOdysseyTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* clientTests.m */,
+				00E356F21AD99517003FC87E /* JobOdysseyTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = clientTests;
+			path = JobOdysseyTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -122,7 +122,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* client */ = {
+		13B07FAE1A68108700A75B9A /* JobOdyssey */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -133,7 +133,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = client;
+			name = JobOdyssey;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				17AC0272476B328F869B6722 /* libPods-client.a */,
-				A8FC1BD1AB0271CFCD8C8A7B /* libPods-client-clientTests.a */,
-				814C75972D921C5BF1F54DF5 /* libPods-client-tvOS.a */,
-				DE82BD118D3E4D838B83C827 /* libPods-client-tvOSTests.a */,
+				17AC0272476B328F869B6722 /* libPods-JobOdyssey.a */,
+				A8FC1BD1AB0271CFCD8C8A7B /* libPods-JobOdyssey-JobOdysseyTests.a */,
+				814C75972D921C5BF1F54DF5 /* libPods-JobOdyssey-tvOS.a */,
+				DE82BD118D3E4D838B83C827 /* libPods-JobOdyssey-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,9 +159,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* client */,
+				13B07FAE1A68108700A75B9A /* JobOdyssey */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* clientTests */,
+				00E356EF1AD99517003FC87E /* JobOdysseyTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B870414B8C3DF5504E3BFDAA /* Pods */,
@@ -174,10 +174,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* client.app */,
-				00E356EE1AD99517003FC87E /* clientTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* client-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* client-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* JobOdyssey.app */,
+				00E356EE1AD99517003FC87E /* JobOdysseyTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* JobOdyssey-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* JobOdyssey-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,14 +185,14 @@
 		B870414B8C3DF5504E3BFDAA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6DD09EBD840C7813D41EDDE4 /* Pods-client.debug.xcconfig */,
-				46C5D35F262582F7DC71619E /* Pods-client.release.xcconfig */,
-				3C5B26DF82536E308D016507 /* Pods-client-clientTests.debug.xcconfig */,
-				4E5D675CBEB4C9CBAF253130 /* Pods-client-clientTests.release.xcconfig */,
-				A28A9E31860102E8601F1886 /* Pods-client-tvOS.debug.xcconfig */,
-				255C255678075B74C08DD16B /* Pods-client-tvOS.release.xcconfig */,
-				FF449FE6FE39DE29B3FA0F92 /* Pods-client-tvOSTests.debug.xcconfig */,
-				925ADE64A1FFB72A936E425D /* Pods-client-tvOSTests.release.xcconfig */,
+				6DD09EBD840C7813D41EDDE4 /* Pods-JobOdyssey.debug.xcconfig */,
+				46C5D35F262582F7DC71619E /* Pods-JobOdyssey.release.xcconfig */,
+				3C5B26DF82536E308D016507 /* Pods-JobOdyssey-JobOdysseyTests.debug.xcconfig */,
+				4E5D675CBEB4C9CBAF253130 /* Pods-JobOdyssey-JobOdysseyTests.release.xcconfig */,
+				A28A9E31860102E8601F1886 /* Pods-JobOdyssey-tvOS.debug.xcconfig */,
+				255C255678075B74C08DD16B /* Pods-JobOdyssey-tvOS.release.xcconfig */,
+				FF449FE6FE39DE29B3FA0F92 /* Pods-JobOdyssey-tvOSTests.debug.xcconfig */,
+				925ADE64A1FFB72A936E425D /* Pods-JobOdyssey-tvOSTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* clientTests */ = {
+		00E356ED1AD99517003FC87E /* JobOdysseyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "clientTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "JobOdysseyTests" */;
 			buildPhases = (
 				84A93E2F3E33ED508391BB55 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -216,14 +216,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = clientTests;
-			productName = clientTests;
-			productReference = 00E356EE1AD99517003FC87E /* clientTests.xctest */;
+			name = JobOdysseyTests;
+			productName = JobOdysseyTests;
+			productReference = 00E356EE1AD99517003FC87E /* JobOdysseyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* client */ = {
+		13B07F861A680F5B00A75B9A /* JobOdyssey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "client" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "JobOdyssey" */;
 			buildPhases = (
 				A0658D7BC3C97995F59515F2 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -237,14 +237,14 @@
 			);
 			dependencies = (
 			);
-			name = client;
-			productName = client;
-			productReference = 13B07F961A680F5B00A75B9A /* client.app */;
+			name = JobOdyssey;
+			productName = JobOdyssey;
+			productReference = 13B07F961A680F5B00A75B9A /* JobOdyssey.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* client-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* JobOdyssey-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "client-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "JobOdyssey-tvOS" */;
 			buildPhases = (
 				1D963D2D4409A2EA361C967C /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -257,14 +257,14 @@
 			);
 			dependencies = (
 			);
-			name = "client-tvOS";
-			productName = "client-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* client-tvOS.app */;
+			name = "JobOdyssey-tvOS";
+			productName = "JobOdyssey-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* JobOdyssey-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* client-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* JobOdyssey-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "client-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "JobOdyssey-tvOSTests" */;
 			buildPhases = (
 				DE04EB15EEC3F8257ED8BB96 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -276,9 +276,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "client-tvOSTests";
-			productName = "client-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* client-tvOSTests.xctest */;
+			name = "JobOdyssey-tvOSTests";
+			productName = "JobOdyssey-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* JobOdyssey-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -307,7 +307,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "client" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "JobOdyssey" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -320,10 +320,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* client */,
-				00E356ED1AD99517003FC87E /* clientTests */,
-				2D02E47A1E0B4A5D006451C7 /* client-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* client-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* JobOdyssey */,
+				00E356ED1AD99517003FC87E /* JobOdysseyTests */,
+				2D02E47A1E0B4A5D006451C7 /* JobOdyssey-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* JobOdyssey-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -392,7 +392,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JobOdyssey-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -419,7 +419,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client-clientTests/Pods-client-clientTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JobOdyssey-JobOdysseyTests/Pods-JobOdyssey-JobOdysseyTests-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -460,7 +460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-client-clientTests/Pods-client-clientTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobOdyssey-JobOdysseyTests/Pods-JobOdyssey-JobOdysseyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		65C957242DB6EAB2FCBBA23C /* [CP] Copy Pods Resources */ = {
@@ -469,7 +469,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-client/Pods-client-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JobOdyssey/Pods-JobOdyssey-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -510,7 +510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-client/Pods-client-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobOdyssey/Pods-JobOdyssey-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		84A93E2F3E33ED508391BB55 /* [CP] Check Pods Manifest.lock */ = {
@@ -528,7 +528,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-clientTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JobOdyssey-JobOdysseyTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -550,7 +550,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JobOdyssey-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -572,7 +572,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-client-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JobOdyssey-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -624,7 +624,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* clientTests.m in Sources */,
+				00E356F31AD99517003FC87E /* JobOdysseyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* clientTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* JobOdysseyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,12 +659,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* client */;
+			target = 13B07F861A680F5B00A75B9A /* JobOdyssey */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* client-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* JobOdyssey-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -672,14 +672,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C5B26DF82536E308D016507 /* Pods-client-clientTests.debug.xcconfig */;
+			baseConfigurationReference = 3C5B26DF82536E308D016507 /* Pods-JobOdyssey-JobOdysseyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = clientTests/Info.plist;
+				INFOPLIST_FILE = JobOdysseyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -689,17 +689,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client.app/client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobOdyssey.app/JobOdyssey";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E5D675CBEB4C9CBAF253130 /* Pods-client-clientTests.release.xcconfig */;
+			baseConfigurationReference = 4E5D675CBEB4C9CBAF253130 /* Pods-JobOdyssey-JobOdysseyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = clientTests/Info.plist;
+				INFOPLIST_FILE = JobOdysseyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -709,19 +709,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client.app/client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobOdyssey.app/JobOdyssey";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DD09EBD840C7813D41EDDE4 /* Pods-client.debug.xcconfig */;
+			baseConfigurationReference = 6DD09EBD840C7813D41EDDE4 /* Pods-JobOdyssey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = client/Info.plist;
+				INFOPLIST_FILE = JobOdyssey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -729,7 +729,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = client;
+				PRODUCT_NAME = JobOdyssey;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -738,12 +738,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46C5D35F262582F7DC71619E /* Pods-client.release.xcconfig */;
+			baseConfigurationReference = 46C5D35F262582F7DC71619E /* Pods-JobOdyssey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = client/Info.plist;
+				INFOPLIST_FILE = JobOdyssey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -751,7 +751,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = client;
+				PRODUCT_NAME = JobOdyssey;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -759,7 +759,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A28A9E31860102E8601F1886 /* Pods-client-tvOS.debug.xcconfig */;
+			baseConfigurationReference = A28A9E31860102E8601F1886 /* Pods-JobOdyssey-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -770,14 +770,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "client-tvOS/Info.plist";
+				INFOPLIST_FILE = "JobOdyssey-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.client-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.JobOdyssey-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -787,7 +787,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 255C255678075B74C08DD16B /* Pods-client-tvOS.release.xcconfig */;
+			baseConfigurationReference = 255C255678075B74C08DD16B /* Pods-JobOdyssey-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -798,14 +798,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "client-tvOS/Info.plist";
+				INFOPLIST_FILE = "JobOdyssey-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.client-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.JobOdyssey-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -815,7 +815,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF449FE6FE39DE29B3FA0F92 /* Pods-client-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = FF449FE6FE39DE29B3FA0F92 /* Pods-JobOdyssey-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -825,24 +825,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "client-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "JobOdyssey-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.client-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.JobOdyssey-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client-tvOS.app/client-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobOdyssey-tvOS.app/JobOdyssey-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 925ADE64A1FFB72A936E425D /* Pods-client-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 925ADE64A1FFB72A936E425D /* Pods-JobOdyssey-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -852,17 +852,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "client-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "JobOdyssey-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.client-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.JobOdyssey-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/client-tvOS.app/client-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobOdyssey-tvOS.app/JobOdyssey-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -983,7 +983,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "clientTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "JobOdysseyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -992,7 +992,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "client" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "JobOdyssey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1001,7 +1001,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "client-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "JobOdyssey-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1010,7 +1010,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "client-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "JobOdyssey-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1019,7 +1019,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "client" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "JobOdyssey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

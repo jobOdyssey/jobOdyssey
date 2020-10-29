@@ -40,7 +40,7 @@ const App = () => {
               },
             }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="SocialLogin"
             component={SocialLogin}
             options={{
@@ -53,7 +53,7 @@ const App = () => {
                 fontWeight: 'bold',
               },
             }}
-          />                        
+          />                         */}
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
