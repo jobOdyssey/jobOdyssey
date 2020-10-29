@@ -3,13 +3,14 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {StatusBar} from 'react-native';
 
 import {AppTheme} from './src/theme';
-import {HomeScreen, LoginScreen, SignupScreen, JobApplication , SocialLogin} from './src/ui';
+import {HomeScreen, LoginScreen, SignupScreen} from './src/ui'; //, JobApplication , SocialLogin
 
 
-console.log("LoginScreen",LoginScreen)
-console.log("SocialLoginScreen",SocialLogin)
+// console.log("LoginScreen",LoginScreen)
+// console.log("SocialLoginScreen",SocialLogin)
 
 // this is a stag of all screens
 // the screens will be popped and pushed based on user's actions
@@ -17,6 +18,11 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
+    <>
+    <StatusBar
+          hidden={false}
+          barStyle="light-content"
+      />
     <PaperProvider theme={AppTheme}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="SocialLogin">
@@ -76,7 +82,7 @@ const App = () => {
               },
             }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="JobApplication"
             component={JobApplication}
             options={{
@@ -89,10 +95,11 @@ const App = () => {
                 fontWeight: 'bold',
               },
             }}
-          />
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+    </>
   )
 }
 
