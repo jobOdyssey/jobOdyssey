@@ -1,4 +1,5 @@
 import React from 'react';
+import {DefaultTheme} from 'react-native-paper';
 import {Platform} from 'react-native'
 
 import {GlobalTheme} from '../theme';
@@ -7,6 +8,16 @@ import {GlobalTheme} from '../theme';
 export const initialGlobalState = {
   themeName: 'light',
   themeScheme: GlobalTheme.light,
+  appTheme: {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#aed581',
+      accent: '#e1ffb1',
+    },
+    dark: false,
+  }
 }
 
 const globalReducer = (state, action) => {
@@ -26,6 +37,16 @@ const globalReducer = (state, action) => {
         ...state,
         globalTheme,
         themeScheme,
+        appTheme: {
+          ...DefaultTheme,
+          roundness: 2,
+          colors: {
+            ...DefaultTheme.colors,
+            primary: themeScheme.primary,
+            accent: themeScheme.accent,
+          },
+          dark: false,
+        }
       }
     default:
       return {...state};

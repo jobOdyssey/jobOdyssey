@@ -1,4 +1,3 @@
-import {DefaultTheme} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 
 
@@ -29,29 +28,14 @@ export const GlobalTheme = {
   },
 }
 
-export const AppTheme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#aed581',
-    accent: '#e1ffb1',
-    // primary: '#7f00ff',
-    // accent: '#ffff01',
-  },
-  dark: false,
-};
-
-// console.log(AppTheme);  
-
 export const HomeStyles = StyleSheet.create({
-  board: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
-});
+          board: {
+            position: 'absolute',
+            margin: 16,
+            right: 0,
+            bottom: 0,
+          },
+        });
 
 export const LoginStyles = StyleSheet.create({
   bigBlue: {

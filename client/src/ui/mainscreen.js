@@ -4,7 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {View} from 'react-native';
 
-import {AppTheme} from '../theme';
 import {HomeScreen, LoginScreen, SignupScreen} from '.'; //, JobApplication , SocialLogin
 import {ThemeSetting} from '../components'
 
@@ -28,7 +27,7 @@ const MainScreen = () => {
   }
 
   return (
-    <PaperProvider theme={AppTheme}>
+    <PaperProvider theme={glbState.state.appTheme}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           {/* <ThemeSetting onPress={changeGlobalThemeState} icon={'brightness-4'} /> */}
       </View>
