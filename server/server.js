@@ -1,3 +1,4 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -7,6 +8,14 @@ import cookieSession from 'cookie-session'
 import authRouter from './routes/auth.js'
 import userRouter from './routes/user.js'
 import jobapplicationRouter from './routes/jobapplication.js'
+
+import apollo from 'apollo-server-express';
+
+console.log("apollo!!", apollo);
+
+const { ApolloServer } = apollo
+import { typeDefs } from './typeDefs.js';
+import { resolvers } from './resolvers.js';
 
 
 // Setting up environment variables
@@ -53,6 +62,16 @@ userRouter
 
 // GraphQL endpoint
 
+// Apollo Server setup
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req, res }) => ({ req, res }),
+});
+
+
+// GraphQL listener
+apolloServer.applyMiddleware({ app, cors: false });
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -66,5 +85,9 @@ app.use(function(err, req, res, next) {
     res.render('error');
   });
 
-// Listener
-app.listen(process.env.PORT, console.log(`Server is in ${process.env.NODE_ENV} mode, listening on port ${process.env.PORT}`));
+// Express listener
+app.listen(
+  process.env.PORT,
+  console.log(`Server is in ${process.env.NODE_ENV} mode, ready at http://localhost:${process.env.PORT}${apolloServer.graphqlPath}`)
+);
+
