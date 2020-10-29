@@ -2,9 +2,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {View} from 'react-native';
 
 import {AppTheme} from '../theme';
 import {HomeScreen, LoginScreen, SignupScreen} from '.'; //, JobApplication , SocialLogin
+import {ThemeSetting} from '../components'
 
 import {useAppGlobalState} from '../state/global';
 
@@ -19,8 +21,18 @@ const MainScreen = () => {
 
   const glbState = useAppGlobalState();
 
+  const changeGlobalThemeState = () => {
+    dispatch({
+      type: 'changeAppGlobalTheme',
+    })
+  }
+
   return (
     <PaperProvider theme={AppTheme}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          {/* <ThemeSetting onPress={changeGlobalThemeState} icon={'brightness-4'} /> */}
+      </View>
+
       <NavigationContainer>
         <Stack.Navigator initialRouteName="SocialLogin">
           <Stack.Screen

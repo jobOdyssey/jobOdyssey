@@ -1,11 +1,11 @@
 import React from 'react'
 import {TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {useAppGlobalState} from '../state/AppContext'
+import {useAppGlobalState} from '../state/global'
 
 
-const ThemeControl = props => {
-  const glbState = useAppGlobalState
+const ThemeSetting = props => {
+  const glbState = useAppGlobalState();
 
   return (
     <>
@@ -13,10 +13,10 @@ const ThemeControl = props => {
         {...props}
         style={[props.style]}
         hitSlop={{top: 15, right: 15, bottom: 15, left: 15}}>
-        <Icon name={props.icon} color={glbState.theme.text} /> 
+        <Icon name={props.icon} color={glbState.state.themeScheme.text} /> 
       </TouchableOpacity>
     </>
   )
 }
 
-export default ThemeControl
+export default ThemeSetting
