@@ -1,4 +1,6 @@
+import bcrypt from 'bcryptjs';
 import { User, Application } from './sequelize.js';
+
 
 // graphQL resolvers
 const resolvers = {
@@ -45,13 +47,37 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: (parent, args, context, info) => {
-      return args.userInfo.username;
+    login: async (parent, { loginInfo }) => {
+      const { username, password } = loginInfo;
+      const errors = [];
+      const user = await User.findOne({
+        where: {
+          username,
+        },
+      });
+      const isMatch = await bcrypt.compare(password, user.dataValues.password);
+      if (!isMatch) {
+        errors.push('Invalid login credentials');
+      }
+      return { errors, user };
     },
     addUser: async (parent, { userInfo }) => {
       const { username, password, email } = userInfo;
-      const newUser = await User.create({ username, password, email });
-      return newUser;
+      return bcrypt
+        .hash(password, +process.env.SALT_WORK_FACTOR)
+        .then(async (hash) => {
+          const errors = [];
+          let newUser;
+          try {
+            newUser = await User.create({ username, password: hash, email });
+          } catch (err) {
+            err.errors.forEach((error) => errors.push(error.message));
+          }
+          return { errors, newUser };
+        })
+        .catch((err) => {
+          throw new Error(err.message);
+        });
     },
     addApplication: async (parent, { newAppInfo }) => {
       const { user_id, company, position, url, notes, status } = newAppInfo;
