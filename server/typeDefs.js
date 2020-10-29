@@ -13,11 +13,6 @@ const typeDefs = gql`
     OFFERED
   }
 
-  type Error {
-    field: String
-    message: String
-  }
-
   # User type
   type User {
     id: ID
@@ -26,7 +21,13 @@ const typeDefs = gql`
     password: String
   }
 
-  type AddResponse {
+  type AddUserResponse {
+    errors: [String]!
+    user: User
+  }
+
+  type LoginResponse {
+    errors: [String]!
     user: User
   }
 
@@ -45,6 +46,11 @@ const typeDefs = gql`
   }
 
   # Input types for reusable inputs
+  input LoginInfo {
+    username: String!
+    password: String!
+  }
+
   input UserInfo {
     username: String!
     password: String!
@@ -78,11 +84,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(userInfo: UserInfo!): User
+    addUser(userInfo: UserInfo!): AddUserResponse
     addApplication(newAppInfo: NewAppInfo!): Application
     editApplication(editedAppInfo: EditedAppInfo!): Application
     archiveApplication(id: ID!): Application
-    login(userInfo: UserInfo!): String
+    login(loginInfo: LoginInfo!): LoginResponse
     test: User
   }
 `;
