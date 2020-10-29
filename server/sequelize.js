@@ -79,6 +79,11 @@ const Application = sequelize.define(
       type: DataTypes.STRING,
       // null OK
     },
+    archive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   },
   {
     schema: 'job_odyssey',
