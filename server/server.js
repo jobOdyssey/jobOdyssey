@@ -1,174 +1,95 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import { ApolloServer, gql } from 'apollo-server';
-// import { GraphQLScalarType } from 'graphql';
-// import { Kind } from 'graphql/language';
-const express = require('express');
-const dotenv = require('dotenv');
-const { ApolloServer, gql } = require('apollo-server-express');
-const { GraphQLScalarType } = require('graphql');
-const { Kind } = require('graphql/language');
 
-// Express set up
-const app = express();
+import express from 'express';
+import dotenv from 'dotenv';
+import path from 'path';
+import passport from 'passport'
+import cookieParser from 'cookie-parser'
+import cookieSession from 'cookie-session'
+import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
+import jobapplicationRouter from './routes/jobapplication.js'
+
+import apollo from 'apollo-server-express';
+
+console.log("apollo!!", apollo);
+
+const { ApolloServer } = apollo
+import { typeDefs } from './typeDefs.js';
+import { resolvers } from './resolvers.js';
+
 
 // Setting up environment variables
 dotenv.config();
 
-// graphQL typeDefs
-const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+const __dirname = path.resolve(path.dirname(''));
 
-  # Date and Timestamp types
-  scalar DateType
-  scalar TimestampType
+// Express set up
+const app = express();
 
-  # Enum type for status
-  enum Status {
-    PLANNED
-    APPLIED
-    REJECTED
-    INTERVIEW_SCHEDULED
-    OFFERED
-  }
 
-  type Error {
-    field: String
-    message: String
-  }
 
-  # User type
-  type User {
-    id: ID
-    username: String
-    email: String
-    password: String
-    freeText1: String
-    freeText2: String
-  }
+// view engine setup
+app.set('views', path.join(__dirname, 'server\\views'));
+app.set('view engine', 'jade')
 
-  type AddResponse {
-    errors: [Error]
-    user: User
-  }
-
-  # Application type
-  type Application {
-    id: ID
-    user_id: String
-    company: String
-    position: String
-    url: String
-    created_at: DateType
-    recent_activity: TimestampType
-    status: Status
-    notes: String
-  }
-
-  # Input types for reusable inputs
-  input UserInfo {
-    username: String!
-    password: String!
-    email: String
-  }
-
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "applications" query returns an array of zero or more applications (defined above).
-  type Query {
-    hello: String
-    applications: [Application]
-  }
-
-  type Mutation {
-    addUser(userInfo: UserInfo!): AddResponse
-    login(userInfo: UserInfo!): String
-    test: String
-  }
-`;
-
-// graphQL resolvers
-const resolvers = {
-  DateType: new GraphQLScalarType({
-    name: 'Date',
-    description: 'Date custom scalar type',
-    parseValue(value) {
-      return new Date(value); // value from the client
-    },
-    serialize(value) {
-      return value.getTime(); // value sent to the client
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return parseInt(ast.value, 10); // ast value is always in string format
-      }
-      return null;
-    },
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days (in milliseconds)
+    keys: [process.env.COOKIE_KEY], // special cookie key
   }),
-  TimestampType: new GraphQLScalarType({
-    name: 'Timestamp',
-    serialize(date) {
-      return date instanceof Date ? date.getTime() : null;
-    },
-    parseValue(date) {
-      try {
-        return new Date(value);
-      } catch (error) {
-        return null;
-      }
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return new Date(parseInt(ast.value, 10));
-      }
-      if (ast.kind === Kind.STRING) {
-        return this.parseValue(ast.value);
-      }
+);
 
-      return null;
-    },
-  }),
-  Query: {
-    hello: () => 'hello world!',
-  },
-  Mutation: {
-    login: (parent, args, context, info) => {
-      return args.userInfo.username;
-    },
-    addUser: () => ({
-      errors: [
-        {
-          field: 'username',
-          message: 'duplicate username',
-        },
-      ],
-      user: {
-        id: 1,
-        username: 'test',
-        email: 'test@test.com',
-        password: 'password1234',
-        freeText1: 'free text 1',
-        freeText2: 'free text 2',
-      },
-    }),
-    test: async (parent, args, context, info) => {
-      return 'test';
-    },
-  },
-};
+// Initialize passprt
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// make static resources like the css available
+app.use(express.static(path.join(__dirname, 'public')));
+
+// register routes
+app.use('/', authRouter);
+
+app.use('/api/user', userRouter);
+
+app.use('/api/jobapplication', jobapplicationRouter);
+
+userRouter
+
+
+// GraphQL endpoint
 
 // Apollo Server setup
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req, res }) => ({ req, res }),
+  context: ({ req, res }) => ({ req, res, 
+    getUser: () => req.user,  
+    logout: () => req.logout() }),
 });
+
 
 // GraphQL listener
 apolloServer.applyMiddleware({ app, cors: false });
 
-// Epress listener
+// error handler
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  
+    console.log('error: ',err);
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  });
+
+// Express listener
 app.listen(
   process.env.PORT,
   console.log(`Server is in ${process.env.NODE_ENV} mode, ready at http://localhost:${process.env.PORT}${apolloServer.graphqlPath}`)
 );
+
