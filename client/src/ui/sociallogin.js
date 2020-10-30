@@ -11,24 +11,25 @@ import {
   Image,
  } from 'react-native';
 
- import {
+import {
   Header,
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
 import { GetJobApplication , SetUserSession, GetUserInfo, clearCookies, printAllCookies } from '../Helpers/apihelper'
 
- import Constants from '../../env'
+import Constants from '../../env'
 
- import { gql, useQuery, useLazyQuery } from '@apollo/client'
+import { gql, useQuery, useLazyQuery } from '@apollo/client'
 
- const USER_QUERY = gql`
+const USER_QUERY = gql`
  query { getCurrentUser {
   id
   social_id
   username
   email
- }  }`
+ }  
+}`
 
 console.log("SERVER_URL",Constants.SERVER_URL)
 
@@ -75,6 +76,18 @@ const SocialLogin = ({navigation}) => {
   console.log("data!!!!", data);
   console.log("error!!! :" , error)
 
+  const renderUserOpt = (usrMthdObj) => {
+    console.log('renderUserOpt data :: ', usrMthdObj);
+    if (!usrMthdObj || !usrMthdObj.getCurrentUser) {
+      return <></>
+    }
+    return (
+      <View style={styles.imageContainer}>
+      <Text>Welcome { data.getCurrentUser.username }</Text>
+    </View>
+    )
+  }
+
   return (
      <>
       <StatusBar barStyle="dark-content" />
@@ -82,16 +95,12 @@ const SocialLogin = ({navigation}) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-            {
-             !data ? null :  <View style={styles.imageContainer}>
-            <Text>Welcome { data.getCurrentUser.username }</Text>           
-             </View>
-            }          
+          {renderUserOpt(data)}          
           <View style={styles.body}>
             <TouchableOpacity style={styles.socialBtn}
               onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}>
               <Text style={styles.buttonText} >
-                {!data ? "Connect via Google" : "You are connected !"}</Text>
+                {!data || !data.getCurrentUser ? "Connect via Google" : "You are connected !"}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
