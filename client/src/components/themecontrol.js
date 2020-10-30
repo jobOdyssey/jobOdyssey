@@ -13,7 +13,7 @@ const ThemeSetting = props => {
         {...props}
         style={[props.style]}
         hitSlop={{top: 15, right: 15, bottom: 15, left: 15}}>
-        <Icon name={props.icon} color={glbState.state.themeScheme.text} /> 
+        <Icon name={props.icon} size={40} color={glbState.state.themeScheme.text} /> 
       </TouchableOpacity>
     </>
   )

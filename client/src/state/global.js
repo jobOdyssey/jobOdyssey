@@ -1,6 +1,6 @@
 import React from 'react';
 import {DefaultTheme} from 'react-native-paper';
-import {Platform} from 'react-native'
+import {Platform, StatusBar} from 'react-native'
 
 import {GlobalTheme} from '../theme';
 
@@ -13,8 +13,8 @@ export const initialGlobalState = {
     roundness: 2,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#aed581',
-      accent: '#e1ffb1',
+      primary: GlobalTheme.light.primary,
+      accent: GlobalTheme.light.accent,
     },
     dark: false,
   }
@@ -22,7 +22,7 @@ export const initialGlobalState = {
 
 const globalReducer = (state, action) => {
   switch (action.type) {
-    case 'changeGlobalTheme':
+    case 'changeAppGlobalTheme':
       let globalTheme;
       let themeScheme;
       Platform.OS === 'ios' && StatusBar.setBarStyle(state.themeName + '-content', true)
@@ -35,7 +35,7 @@ const globalReducer = (state, action) => {
       }
       return {
         ...state,
-        globalTheme,
+        themeName: globalTheme,
         themeScheme,
         appTheme: {
           ...DefaultTheme,
