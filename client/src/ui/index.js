@@ -6,5 +6,4 @@ import SocialLogin from './sociallogin'
 
 //const SocialLoginScreen = {};
 
-// export {HomeScreen, LoginScreen, SignupScreen, JobApplication, SocialLoginScreen}
-export {HomeScreen, LoginScreen, SignupScreen, JobApplication, SocialLogin }
+export {HomeScreen, JobApplication, LoginScreen, SignupScreen, SocialLogin} 

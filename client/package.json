@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "JobOdyssey",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
     "@react-navigation/stack": "^5.9.3",
     "graphql": "^15.4.0",
     "react": "16.13.1",
+    "react-apollo": "^3.1.5",
     "react-hook-form": "^6.9.6",
     "react-native": "0.63.3",
     "react-native-gesture-handler": "^1.8.0",

@@ -32,6 +32,7 @@ import { GetJobApplication , SetUserSession, GetUserInfo, clearCookies, printAll
 
 console.log("SERVER_URL",Constants.SERVER_URL)
 
+
 const SocialLogin = ({navigation}) => {    
   // const [userData,setUserData] = useState(null);
   const [fetchData, { data, refetch, loading, error }] = useLazyQuery(USER_QUERY);

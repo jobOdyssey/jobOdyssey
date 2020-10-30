@@ -4,7 +4,7 @@ import CookieManager from '@react-native-community/cookies';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const API_URL = `${Constants.SERVER_URL}/api`;
-
+console.log("SERVER_URL",Constants.SERVER_URL)
 
 const printAllCookies = () => {
   CookieManager.get(Constants.SERVER_URL)

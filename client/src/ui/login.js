@@ -1,12 +1,22 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 
-import {InputBox, MainButton} from '../components';
+import {InputBox, MainButton, ThemeSetting} from '../components';
 import {LoginStyles} from '../theme';
+
+import {useGlobalActionDispatch} from '../state/global'
 
 export default LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState(() => '');
   const [password, setPassword] = useState(() => '');
+
+  const disPatchAction = useGlobalActionDispatch();
+
+  const changeGlobalThemeState = () => {
+    disPatchAction({
+      type: 'changeAppGlobalTheme',
+    })
+  }
 
   const performLogin = async () => {
     // implement login validation for User/Password
@@ -19,6 +29,9 @@ export default LoginScreen = ({navigation}) => {
 
   return (
     <View>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+          <ThemeSetting onPress={changeGlobalThemeState} icon={'brightness-4'}/>
+      </View>
       <View style={LoginStyles.board}>
         <InputBox label="Email" text={email} setText={text => setEmail(text)} />
         <InputBox
