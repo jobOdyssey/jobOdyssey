@@ -58,7 +58,6 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-env.js
 .env
 .env.local
 .env.development.local
