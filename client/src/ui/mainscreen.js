@@ -2,10 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
-// import {View} from 'react-native';
 
-import {HomeScreen, LoginScreen, SignupScreen} from '.'; //, JobApplication , SocialLogin
-// import {ThemeSetting} from '../components'
+import {HomeScreen, JobApplication, LoginScreen, SignupScreen, SocialLogin} from '.';
 import {useAppGlobalState} from '../state/global';
 
 // console.log("LoginScreen",LoginScreen)
@@ -37,7 +35,7 @@ const MainScreen = () => {
               },
             }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="SocialLogin"
             component={SocialLogin}
             options={{
@@ -50,7 +48,7 @@ const MainScreen = () => {
                 fontWeight: 'bold',
               },
             }}
-          />                         */}
+          />                        
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
@@ -79,7 +77,7 @@ const MainScreen = () => {
               },
             }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="JobApplication"
             component={JobApplication}
             options={{
@@ -92,7 +90,7 @@ const MainScreen = () => {
                 fontWeight: 'bold',
               },
             }}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
