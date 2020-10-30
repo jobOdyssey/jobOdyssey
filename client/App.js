@@ -9,7 +9,6 @@ import MainScreen from './src/ui/mainscreen'
 
 import Constants from './env'
 
-
 import { ApolloClient, InMemoryCache, ApolloProvider  } from '@apollo/client';
 
 
@@ -24,14 +23,17 @@ const client = new ApolloClient({
 const App = () => {
   
   const glbState = useAppGlobalState();
+  const initStatusBar = () => {
+    StatusBar.setBarStyle('light-content', true)
+  }
 
   return (
     <GlobalProvider>
       <StatusBar
           hidden={false}
           backgroundColor={glbState.state ? glbState.state.themeScheme.primary : GlobalTheme.light.primary}
-          barStyle="light-content"
       />
+      {initStatusBar()}
       <ApolloProvider client={client}>
         <MainScreen />
       </ApolloProvider>
