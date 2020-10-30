@@ -1,5 +1,9 @@
 import HomeScreen from './home';
 import LoginScreen from './login'
 import SignupScreen from './signup'
+import JobApplication from './jobapplication'
+import SocialLogin from './sociallogin'
 
-export {HomeScreen, LoginScreen, SignupScreen}
+//const SocialLoginScreen = {};
+
+export {HomeScreen, JobApplication, LoginScreen, SignupScreen, SocialLogin} 
