@@ -7,6 +7,18 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {AppTheme} from './src/theme';
 import {HomeScreen, LoginScreen, SignupScreen, JobApplication , SocialLogin} from './src/ui';
 
+import Constants from './env'
+
+
+import { ApolloClient, InMemoryCache, ApolloProvider  } from '@apollo/client';
+
+
+// Initialize Apollo Client
+const client = new ApolloClient({
+  uri: `${Constants.SERVER_URL}/graphql`,
+  cache: new InMemoryCache(),
+  credentials: 'include',
+});
 
 console.log("LoginScreen",LoginScreen)
 console.log("SocialLoginScreen",SocialLogin)
@@ -18,6 +30,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <PaperProvider theme={AppTheme}>
+      <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="SocialLogin">
           <Stack.Screen
@@ -47,7 +60,7 @@ const App = () => {
                 fontWeight: 'bold',
               },
             }}
-          />                        
+          />                   
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
@@ -92,6 +105,7 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </ApolloProvider>
     </PaperProvider>
   )
 }

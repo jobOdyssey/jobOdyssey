@@ -84,6 +84,7 @@ const typeDefs = gql`
   # case, the "applications" query returns an array of zero or more applications (defined above).
   type Query {
     hello: String
+    getCurrentUser: User
     getAllUsers: [User]
     getUserApplications(userId: ID!): [Application]
     getApplicationData(applicationId: ID!): Application
