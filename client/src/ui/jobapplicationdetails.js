@@ -19,11 +19,18 @@ const APPLICATION_UPDATE_QUERY = gql`
 }`
 
 const APPLICATION_DETAILS_QUERY = gql`
- query { getCurrentUser {
-  id
-  social_id
-  username
-  email
+query GetApplicationData($applicationId: ID!) { 
+  getApplicationData(applicationId: $applicationId) {
+    id
+    user_id
+    company
+    position
+    url
+    created_at
+    recent_activity
+    status
+    notes
+    archive
  }  
 }`
 
@@ -46,9 +53,26 @@ const JobApplicationDetails = ({route, navigation, props}) => {
   const glbState = useAppGlobalState();
 
   // set component fields
-  const [busy, setBusy] = useState(() => true);
-  const [applicationDetails, setApplicationDetails] = useState(() => []);
-  const [applicationStage, setApplicationStage] = useState(() => '');
+  const [busy, setBusy] = useState(() => true);  
+  // const [applicationStage, setApplicationStage] = useState(() => '');
+
+  const [fetchApplicationData, { data, refetch, loading, error }] = useLazyQuery(APPLICATION_DETAILS_QUERY);
+
+  console.log("route from detail", route.params);
+
+  const jobApplicationID  = route.params && route.params.applicationId;
+  let applicationDetails = null;
+  if (data) {
+    applicationDetails = data.getApplicationData;
+    // setApplicationStage(applicationDetails.status);
+  }
+
+  console.log("Data!", data)
+
+  console.log("applicationDetails!", applicationDetails)
+
+
+  console.log("error detail page", error)
 
   const updateApplicationDetails = () => {
 
@@ -64,43 +88,36 @@ const JobApplicationDetails = ({route, navigation, props}) => {
   const fetchApplicationDetails = async ({applicationId} = route.params) => {
     console.log('Fetch Details of ApplicationID :: ', applicationId);
     setBusy(true);
-    setApplicationDetails(dataResponse);
-    applicationStage(dataResponse.status); //set stage of application in state due to Dropdown control
+    fetchApplicationData({ variables: { applicationId: jobApplicationID   } }); 
+    // setApplicationDetails(dataResponse);
+    // applicationStage(dataResponse.status); //set stage of application in state due to Dropdown control
     setBusy(false);
   }
 
   useEffect(() => {
-    fetchApplicationDetails();
+    fetchApplicationDetails(); 
   }, []);
 
   if (busy) {
     return <BusyIndicator />;
   }
 
-  return (
-    <View>
+  return <>
+    { !applicationDetails ? <></> :<View>
       <View style={JobAppDetailsStyles.form}>
         <Headline>Job Role:</Headline>
-        <Subheading>{applicationDetails.Role}</Subheading>
+        <Subheading>{applicationDetails.position}</Subheading>
         <Headline>Company:</Headline>
-        <Subheading>{applicationDetails.Company}</Subheading>
-        <Headline>Salary:</Headline>
-        <Subheading>{applicationDetails.Salary}</Subheading>
-        <Headline>Location:</Headline>
-        <Subheading>{applicationDetails.Location}</Subheading>
-
-        <Dropdown
-          value={applicationStage}
-          label="Application Stage"
-          data={ApplicationStage}
-          onChangeText={(currentStage) => setApplicationStage(currentStage)}
-        />
+        <Subheading>{applicationDetails.company}</Subheading>        
+        <Headline>url:</Headline>
+        <Subheading>{applicationDetails.url}</Subheading>                
       </View>
       <View style={JobAppDetailsStyles.buttons}>
         <MainButton text="Update Application" icon="update" onPress={updateApplicationDetails} />
       </View>
     </View>
-  )
+    }
+    </>
 }
 
 export default JobApplicationDetails;

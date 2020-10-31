@@ -9,15 +9,50 @@ import UiTheme from './changetheme';
 
 import {useAppGlobalState} from '../state/global'
 
+import { gql, useQuery, useLazyQuery } from '@apollo/client'
+
+
+import {  getUserID } from '../Helpers/apihelper'
+
+const GET_APPLICATIONS_QUERY = gql`
+query GetUserApplications($userId: ID!) { 
+  getUserApplications(userId: $userId) {
+    id
+    user_id
+    company
+    position
+    url
+    created_at
+    recent_activity
+    status
+    notes
+    archive
+ }  
+}`
+
+
 export default HomeScreen = ({navigation}) => {
   
   const glbState = useAppGlobalState();
 
-  const [applications, setApplications] = useState(() => []);
+  const [fetchApplicationsData, { data, refetch, loading, error }] = useLazyQuery(GET_APPLICATIONS_QUERY);
   const [busy, setBusy] = useState(() => true);
+
+  console.log("error home page", error)
+  console.log("application data", data);
+
+  let applications = null;
+  if (data){
+    applications = data.getUserApplications;
+  }
+
+  console.log("application data!", applications);
 
   const fetchApplications = async () => {
     setBusy(true)
+    const user_id = await getUserID();
+    console.log("user ID from store!", user_id);
+    fetchApplicationsData({ variables: { userId: user_id   } }); 
     // return user from State
     // activeJobs
     setBusy(false)

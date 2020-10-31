@@ -10,7 +10,7 @@ import {LoginStyles} from '../theme';
 
 import {useAppGlobalState} from '../state/global'
 
-import {  SetUserSession, printAllCookies } from '../Helpers/apihelper'
+import {  SetUserSession, printAllCookies, setUserID, getUserID } from '../Helpers/apihelper'
 
 const USER_QUERY = gql`
  query { getCurrentUser {
@@ -42,9 +42,11 @@ export default LoginScreen = ({navigation}) => {
   const [alertMessage, setAlertMessage] = useState(() => '')
   
   const [loginUser] = useMutation(LOGIN_USER,{
-    onCompleted(user) {
-      console.log("login user mutation executed!",  user);
-      if (user) {
+    onCompleted: (result) => {
+      console.log("login user mutation executed!",  result);
+      if (result) {
+
+        setUserID(result.login.user.id);
         moveToHome();  
       }
     }
@@ -53,21 +55,17 @@ export default LoginScreen = ({navigation}) => {
   const [fetchData, { data, refetch, loading, error }] = useLazyQuery(USER_QUERY);
 
   useEffect(() => {        
-    async function validateCookies() {
-      const validatedResult = await printAllCookies();
-      console.log('validating cookie')
-      // fetchData();
-    }
     console.log("on login page")
-    Linking.addEventListener('url', handleOpenURL);
-    validateCookies();
+    Linking.addEventListener('url', handleOpenURL);   
+    printAllCookies(); 
+    fetchData();
   }, []);
 
   const handleOpenURL = async ({ url }) => {
     if (url.indexOf("?sig") !== -1) {        
         console.log("redirect succesfull");  
         console.log('navigation ', navigation);
-        await SetUserSession(url); // important          
+        await SetUserSession(url); // important                  
         moveToHome();   
     }
   };
@@ -97,7 +95,8 @@ export default LoginScreen = ({navigation}) => {
     try {
       await loginUser({ variables: { email: email, password: password   } });
     } catch (err) {
-      setAlertMessage('User does not exist')
+      console.log("error on login", err)
+      setAlertMessage('User does not exist');
       setShowAlert(true);
     }
   };
@@ -116,7 +115,7 @@ export default LoginScreen = ({navigation}) => {
         </View>
       )
     } else {
-      setTimeout(() => moveToHome(), 500)
+      //setTimeout(() => moveToHome(), 500)
       return null;
     }
   }

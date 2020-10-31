@@ -23,15 +23,17 @@ const ApplicationBoard = ({applicationList}) => {
     });
   };
 
-  const renderApplicationToScreen = ({application}) => (
-    <TouchableOpacity onPress={() => handleApplicationSelected(application.id)}>
+  const renderApplicationToScreen = (application) => {
+    console.log("single application", application);
+    application = application.item;
+    return <TouchableOpacity onPress={() => handleApplicationSelected(application.id)}>
       <List.Item
         key={application.id}
         title={application.position}
         description={`${application.company} - ${application.recent_activity}`}
       />
     </TouchableOpacity>
-  );
+};
 
   return (
     <List.Section title="Applications">

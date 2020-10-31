@@ -38,14 +38,17 @@ const resolvers = {
         password: user.dataValues.password,
       }));
     },
-    getUserApplications: async (parent, { }, context) => {
+    getUserApplications: async (parent, { userId }, context) => {
       console.log("context req user",context.getUser())
       //console.log("context res",context.res)      
+      console.log("user id received", userId);
       const userApps = await Application.findAll({
         where: {
-          user_id: context.getUser().id,
+          user_id: userId,
         },
       });
+
+      console.log("applications", userApps);
       return userApps.map((application) => ({
         id: application.dataValues.id,
         user_id: application.dataValues.user_id,
@@ -56,6 +59,7 @@ const resolvers = {
         recent_activity: application.dataValues.recent_activity,
         status: application.dataValues.status,
         notes: application.dataValues.notes,
+        archive: application.dataValues.archive,
       }));
     },
     getApplicationData: async (parent, { applicationId }) => {
@@ -115,7 +119,8 @@ const resolvers = {
           throw new Error(err.message);
         });
     },
-    addApplication: async (parent, { newAppInfo }) => {
+    addApplication: async (parent, { newAppInfo }, context) => {
+      console.log("context req user from login",context.getUser())
       const { user_id, company, position, url, notes, status } = newAppInfo;
       const newApp = await Application.create({ user_id, company, position, url, status, notes });
       return newApp;
