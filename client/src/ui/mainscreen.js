@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {HomeScreen, JobApplication, LoginScreen, SignupScreen, SocialLogin} from '.';
+import {HomeScreen, JobApplication, JobApplicationDetails, LoginScreen, SignupScreen, SocialLogin} from '.';
 import {useAppGlobalState} from '../state/global';
 
 // console.log("LoginScreen",LoginScreen)
@@ -82,6 +82,20 @@ const MainScreen = () => {
             component={JobApplication}
             options={{
               title: 'JobApplication....',
+              headerStyle: {
+                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="JobApplicationDetails"
+            component={JobApplicationDetails}
+            options={{
+              title: 'Job Application Details....',
               headerStyle: {
                 backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
               },
