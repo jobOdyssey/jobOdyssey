@@ -13,6 +13,15 @@ export const GlobalTheme = {
     grey3: '#555a5e',
     grey4: '#333537',
     background: '#ffffff',
+    dark: true,
+    colors: {
+      primary: '#7f00ff',
+      background: '#ffffff',
+      card: '#000028',
+      text: '#ffffff',
+      border: '#000028',
+      notification: '#9933FF',
+    }
   },
   dark: {
     primary: '#7f00ff',
@@ -25,6 +34,15 @@ export const GlobalTheme = {
     grey3: '#686e73',
     grey4: '#c5c9cb',
     background: '#000000',
+    dark: false,
+    colors: {
+      primary: '#9933FF',
+      background: '#000023',
+      card: '#000028',
+      text: '#ffffff',
+      border: '#000028',
+      notification: '#9933FF',
+    }
   },
 }
 

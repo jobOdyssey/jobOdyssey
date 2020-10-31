@@ -16,10 +16,9 @@ const Stack = createStackNavigator();
 const MainScreen = () => {
 
   const glbState = useAppGlobalState();
-  
   return (
     <PaperProvider theme={glbState.state.appTheme}>
-      <NavigationContainer theme={glbState.state.appTheme}>
+      <NavigationContainer theme={glbState.state.themeScheme}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             name="Login"
