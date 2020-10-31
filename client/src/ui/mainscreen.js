@@ -27,7 +27,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581',
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -41,7 +41,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -55,7 +55,7 @@ const MainScreen = () => {
             options={{
               title: 'Sign Up',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -67,9 +67,9 @@ const MainScreen = () => {
             name="Home"
             component={HomeScreen}
             options={{
-              title: 'Jobs....',
+              title: '',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -81,9 +81,9 @@ const MainScreen = () => {
             name="JobApplication"
             component={JobApplication}
             options={{
-              title: 'JobApplication....',
+              title: 'Add Job Application',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -95,9 +95,9 @@ const MainScreen = () => {
             name="JobApplicationDetails"
             component={JobApplicationDetails}
             options={{
-              title: 'Job Application Details....',
+              title: 'Job Application Details',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
