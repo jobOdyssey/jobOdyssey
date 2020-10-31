@@ -40,7 +40,7 @@ const ApplicationBoard = ({props}) => {
         expanded={true}
         onPress={setApplicationExpandedState}
         left={(appIcon) => <List.Icon {...appIcon} icon="thumb-up-outline" />}>
-        <FlatList data={props.active} renderItem={renderApplicationToScreen} />
+        <FlatList data={props.applicationList} renderItem={renderApplicationToScreen} />
       </List.Accordion>
     </List.Section>
   )

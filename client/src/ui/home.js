@@ -3,25 +3,35 @@ import {View} from 'react-native';
 
 import {FAB} from 'react-native-paper';
 
+import {ApplicationBoard} from '../components';
 import {HomeStyles} from '../theme';
 
 export default HomeScreen = ({navigation}) => {
-  const [activeJobs, setActiveJobs] = useState(() => []);
-  const [inActiveJobs, setInactiveJobs] = useState(() => []);
-  const [user, setUser] = useState(() => {}); // grab initial user or set a user
+  
+  const [applications, setApplications] = useState(() => []);
+  const [busy, setBusy] = useState(() => true);
+
+  const fetchApplications = async () => {
+    setBusy(true)
+    // return user from State
+    // activeJobs
+    setBusy(false)
+  }
+
 
   useEffect(() => {
     // lets return all jobs probably in an adv. Hook setup
+    fetchApplications()
   }, []);
-
 
   return (
     <View style={{flex: 1}}>
+      <ApplicationBoard applicationList={applicationss} />
       <FAB
         style={HomeStyles.board}
         small
-        // icon="plus"
-        // onPress={() => navigation.navigate('')} // possibly add jobs by user
+        icon="plus"
+        onPress={() => navigation.navigate('JobApplication')} // possibly add jobs by user
       />
     </View>
   );

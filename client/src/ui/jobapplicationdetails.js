@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import {Dropdown} from 'react-native-material-dropdown';
-import {Headline} from 'react-native-paper';
-import {Subheading} from 'react-native-paper';
+import {Dropdown} from 'react-native-material-dropdown-v2';
+import {Headline, Subheading} from 'react-native-paper';
 import { gql, useQuery, useLazyQuery } from '@apollo/client'
 
 import {BusyIndicator, MainButton} from '../components/index';
@@ -35,7 +34,7 @@ const ApplicationStage = [
     'offered',
     'planned',  
     'rejected',
-  ].map(stage => {value: stage})
+  ].map(stage => ({value: stage}))
 
 const JobApplicationDetails = ({route, navigation, props}) => {
 
