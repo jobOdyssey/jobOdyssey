@@ -4,7 +4,19 @@ import CookieManager from '@react-native-community/cookies';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const API_URL = `${Constants.SERVER_URL}/api`;
-console.log("SERVER_URL",Constants.SERVER_URL)
+
+const setUserID = async (userId) => {
+  await AsyncStorage.setItem(
+    'userid', userId
+  );
+}
+
+const getUserID = async () => {
+  return await AsyncStorage.getItem(
+    'userid'
+  );
+}
+
 
 const printAllCookies = () => {
   CookieManager.get(Constants.SERVER_URL)
@@ -92,4 +104,4 @@ const GetJobApplications = () => {
   }).then(res => res.json());
 }
 
-export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications, clearCookies, printAllCookies }
+export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications, clearCookies, printAllCookies, setUserID, getUserID   }

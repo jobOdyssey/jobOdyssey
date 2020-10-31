@@ -2,6 +2,9 @@ import express from 'express';
 var router = express.Router();
 import passport from 'passport'
 import passportGoogle from 'passport-google-oauth20'
+import graphqlPassport from 'graphql-passport';
+const { GraphQLLocalStrategy } = graphqlPassport;
+import bcrypt from 'bcryptjs';
 
 import dotenv from 'dotenv';
 
@@ -45,6 +48,24 @@ passport.use(new GoogleStrategy({
     // if not i created it and return it    
     done(null, user, accessToken );
 }))
+
+passport.use(
+    new GraphQLLocalStrategy(async (email, password, done) => {      
+      const user = await User.findOne({
+        where: {
+            email,
+        },
+      });
+      let isMatch = false;
+      if (user) {
+        isMatch = await bcrypt.compare(password, user.dataValues.password);
+      }      
+      console.log("matched user graph auth: ", user);      
+      const error = isMatch ? null : new Error('no matching user');
+      done(error, user);
+    }),
+  );
+
 
 // Googe Oauth2
 router.get('/auth/google', passport.authenticate('google', {

@@ -7,7 +7,7 @@ import {GlobalTheme} from '../theme';
 
 export const initialGlobalState = () => { 
   StatusBar.setBarStyle('light-content', true)  
-  return {
+  const glbTheme =  {
       themeName: 'light',
       themeScheme: GlobalTheme.light,
       appTheme: {
@@ -18,9 +18,11 @@ export const initialGlobalState = () => {
           primary: GlobalTheme.light.primary,
           accent: GlobalTheme.light.accent,
         },
-        dark: false,
+        dark: true,
     }
   }
+  console.log('Global Theme :: ', glbTheme);
+  return glbTheme
 };
 
 const globalReducer = (state, action) => {

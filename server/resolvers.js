@@ -38,14 +38,17 @@ const resolvers = {
         password: user.dataValues.password,
       }));
     },
-    getUserApplications: async (parent, { }, context) => {
+    getUserApplications: async (parent, { userId }, context) => {
       console.log("context req user",context.getUser())
       //console.log("context res",context.res)      
+      console.log("user id received", userId);
       const userApps = await Application.findAll({
         where: {
-          user_id: context.getUser().id,
+          user_id: userId,
         },
       });
+
+      console.log("applications", userApps);
       return userApps.map((application) => ({
         id: application.dataValues.id,
         user_id: application.dataValues.user_id,
@@ -56,6 +59,7 @@ const resolvers = {
         recent_activity: application.dataValues.recent_activity,
         status: application.dataValues.status,
         notes: application.dataValues.notes,
+        archive: application.dataValues.archive,
       }));
     },
     getApplicationData: async (parent, { applicationId }) => {
@@ -68,7 +72,20 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: async (parent, { loginInfo }) => {
+    login: async (parent, { email, password }, context) => {
+      console.log("context req user from login",context.getUser())
+      const { user } = await context.authenticate('graphql-local', { email, password });
+      await context.login(user);
+      return { user }
+    },
+    /*
+    login: async (parent, { loginInfo }, context) => {
+      console.log("context req user from login",context.getUser())
+      const { user } = await context.authenticate('graphql-local', { email: loginInfo.username, password: loginInfo.password });
+      const errors = [];
+      await context.login(user);
+      return { errors, user }
+
       const { username, password } = loginInfo;
       const errors = [];
       const user = await User.findOne({
@@ -81,7 +98,9 @@ const resolvers = {
         errors.push('Invalid login credentials');
       }
       return { errors, user };
+      
     },
+    */
     addUser: async (parent, { userInfo }) => {
       const { username, password, email } = userInfo;
       return bcrypt
@@ -100,7 +119,8 @@ const resolvers = {
           throw new Error(err.message);
         });
     },
-    addApplication: async (parent, { newAppInfo }) => {
+    addApplication: async (parent, { newAppInfo }, context) => {
+      console.log("context req user from login",context.getUser())
       const { user_id, company, position, url, notes, status } = newAppInfo;
       const newApp = await Application.create({ user_id, company, position, url, status, notes });
       return newApp;
@@ -136,6 +156,7 @@ const resolvers = {
       return archivedApp[1][0].dataValues;
     },
     test: async (parent, args, context, info) => {
+      console.log("test mutation call");
       const newUser = await User.create({ username: 't', password: 't', email: 't' });
       return newUser;
     },
