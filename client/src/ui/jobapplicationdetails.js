@@ -9,6 +9,14 @@ import {BusyIndicator, MainButton} from '../components/index';
 import {JobAppDetailsStyles} from '../theme';
 import {useAppGlobalState} from '../state/global';
 
+const statusEnum = {
+  "PLANNED": "Planned",
+  "APPLIED": "Applied",
+  "INTERVIEW_SCHEDULED": "Interview Scheduled",
+  "OFFERED": "Offered",
+  "REJECTED": "Rejected",
+}
+
 const APPLICATION_UPDATE_QUERY = gql`
  query { getCurrentUser {
   id
