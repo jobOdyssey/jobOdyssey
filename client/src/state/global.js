@@ -17,10 +17,6 @@ export const initialGlobalState = () => {
           ...DefaultTheme.colors,
           primary: GlobalTheme.light.primary,
           accent: GlobalTheme.light.accent,
-          background: '#f6f6f6', //'',
-          onBackground: '#000000',
-          onSurface: '#000000',
-          surface: '#ffffff',
         },
         dark: true,
     }
