@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, ScrollView} from 'react-native';
 
 import {FAB} from 'react-native-paper';
 
@@ -31,7 +31,7 @@ query GetUserApplications($userId: ID!) {
 }`
 
 
-export default HomeScreen = ({navigation}) => {
+export default HomeScreen = ({route,navigation}) => {
   
   const glbState = useAppGlobalState();
 
@@ -40,6 +40,14 @@ export default HomeScreen = ({navigation}) => {
 
   console.log("error home page", error)
   console.log("application data", data);
+  console.log("route", route);
+
+  const refresh = () => {
+    console.log('refresh called!')
+    refetch();
+  }
+
+  if (route.params && route.params.refresh) refresh();
 
   let applications = null;
   if (data){
@@ -67,16 +75,20 @@ export default HomeScreen = ({navigation}) => {
   // console.log('HomeScreen Styles :: ', HomeStyles.board)
 
   return (
-    <View style={{flex: 1}}>
-      <UiTheme></UiTheme>
-      <ApplicationBoard applicationList={applications} />
-      <FAB
-        style={HomeStyles(glbState.state.themeScheme).board}
-        icon="plus"
-        color={glbState.state.themeScheme.text}
-        onPress={() => navigation.navigate('JobApplication')} // possibly add jobs by user
-      />
-    </View>
+    <ScrollView style={{
+      marginHorizontal: 5,
+    }}>
+      <View>
+        <UiTheme></UiTheme>
+        <ApplicationBoard applicationList={applications} />
+        <FAB
+          style={HomeStyles(glbState.state.themeScheme).board}
+          icon="plus"
+          color={glbState.state.themeScheme.text}
+          onPress={() => navigation.navigate('JobApplication')} // possibly add jobs by user
+        />
+      </View>
+    </ScrollView>
   );
 
 }

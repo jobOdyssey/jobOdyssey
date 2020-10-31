@@ -1,10 +1,18 @@
 import React, {useState} from 'react'
 import {List} from 'react-native-paper';
 import {FlatList} from 'react-native-gesture-handler';
-import {TouchableOpacity} from 'react-native'
+import {TouchableOpacity, ScrollView} from 'react-native'
 import {useNavigation} from '@react-navigation/native';
 
 import {useAppGlobalState} from '../state/global'
+
+const statusEnum = {
+  "PLANNED": "Planned",
+  "APPLIED": "Applied",
+  "INTERVIEW_SCHEDULED": "Interview Scheduled",
+  "OFFERED": "Offered",
+  "REJECTED": "Rejected",
+}
 
 const ApplicationBoard = ({applicationList}) => {
   
@@ -30,7 +38,7 @@ const ApplicationBoard = ({applicationList}) => {
       <List.Item
         key={application.id}
         title={application.position}
-        description={`${application.company} - ${application.recent_activity}`}
+        description={`${application.company} - ${statusEnum[application.status]} - ${application.recent_activity}`}
       />
     </TouchableOpacity>
 };

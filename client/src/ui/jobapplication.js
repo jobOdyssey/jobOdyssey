@@ -57,6 +57,7 @@ export default JobApplication = ({route,navigation}) => {
   const [addApplication] = useMutation(ADD_APP_QUERY,{
     onCompleted(result) {
       console.log("add application mutation executed!", result);
+
       MoveToDashboard()
     }
   });
@@ -65,6 +66,7 @@ export default JobApplication = ({route,navigation}) => {
   console.log("shouldShowDatepicker", shouldShowDatepicker);
 
   const jobApplicationID  = route.params && route.params.jobApplicationID;
+  
 
   useEffect(() => {
     // connect to the API to bring the     
@@ -94,7 +96,7 @@ export default JobApplication = ({route,navigation}) => {
   console.log(errors);
 
   const MoveToDashboard = async () => {
-    navigation.navigate('Home');
+    navigation.navigate('Home', {refresh: true});
   }
   const onSave = async (data) => {
     console.log("************* this is the form", data);

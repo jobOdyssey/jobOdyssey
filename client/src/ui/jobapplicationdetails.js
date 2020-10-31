@@ -109,9 +109,23 @@ const JobApplicationDetails = ({route, navigation, props}) => {
         <Subheading>{applicationDetails.position}</Subheading>
         <Headline>Company:</Headline>
         <Subheading>{applicationDetails.company}</Subheading>        
-        <Headline>url:</Headline>
-        <Subheading>{applicationDetails.url}</Subheading>                
+        <Headline>Url:</Headline>
+        <Subheading>{applicationDetails.url}</Subheading> 
+        <Headline>Recent Activity:</Headline>
+        <Subheading>{applicationDetails.recent_activity}</Subheading> 
+        <Headline>Notes:</Headline>
+        <Subheading>{applicationDetails.notes}</Subheading> 
+        
       </View>
+      <Dropdown
+          value={applicationDetails.status}
+          label="Application Stage"
+          data={ApplicationStage}
+          // onChangeText={(currentStage) => setUpdateApplication(() => ({
+          //   ...applicationDetails,
+          //   'status': currentStage
+          // }))}
+      />
       <View style={JobAppDetailsStyles.buttons}>
         <MainButton text="Update Application" icon="update" onPress={updateApplicationDetails} />
       </View>
