@@ -4,30 +4,25 @@ import CookieManager from '@react-native-community/cookies';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const API_URL = `${Constants.SERVER_URL}/api`;
-console.log("SERVER_URL",Constants.SERVER_URL)
 
-const printAllCookies = async () => {
-  const ds = await CookieManager.get(Constants.SERVER_URL)
-  .then(async (cookies) => {
+const setUserID = async (userId) => {
+  await AsyncStorage.setItem(
+    'userid', userId
+  );
+}
+
+const getUserID = async () => {
+  return await AsyncStorage.getItem(
+    'userid'
+  );
+}
+
+
+const printAllCookies = () => {
+  CookieManager.get(Constants.SERVER_URL)
+  .then((cookies) => {
     console.log('CookieManager.get =>', cookies);
-    const cookieSession = cookies['express:sess']
-    if (cookieSession['expires']) {
-      if (new Date().getTime() < new Date(cookieSession['expires']).getTime()) {
-        await AsyncStorage.setItem(
-          'user',
-          JSON.stringify({
-            value: cookies['express:sess']['value'],
-            pssprt: cookies['express:sess:sig']
-          })
-        );
-        return true;
-      } else {
-        // clearCookies();  
-      }
-    }
-    return false;
-  }).catch((err) => false);
-  return ds;
+  });
 }
 
 const clearCookies = () => {
@@ -55,7 +50,7 @@ const GetHeadersFromSession = () => {
 
 const SetUserSession = async (url) => {
   const params = getParams(url);    
-
+  
   CookieManager.set(Constants.SERVER_URL, {
     name: 'express:sess.sig',
     value: params.sig,
@@ -71,14 +66,6 @@ const SetUserSession = async (url) => {
   }).then((done) => {
     console.log('CookieManager.set express:sess=>', done);
   }).catch(err=> console.log("CookieManager.set express:sess error",err));
-
-  await AsyncStorage.setItem(
-    'user',
-    JSON.stringify({
-      value: params.session.value,
-      pssprt: params.sig,
-    })
-  );
 
   console.log("Session Stored!")
 }
@@ -117,4 +104,4 @@ const GetJobApplications = () => {
   }).then(res => res.json());
 }
 
-export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications, clearCookies, printAllCookies }
+export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications, clearCookies, printAllCookies, setUserID, getUserID   }

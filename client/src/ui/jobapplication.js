@@ -9,16 +9,34 @@ import {GetJobApplication} from '../Helpers/apihelper'
 import {JobApplicationStyles} from '../theme'
 
 
+import { gql, useMutation, useQuery } from '@apollo/client'
+
+import {  getUserID } from '../Helpers/apihelper'
+
 const PossibleStatus = [
-    "Planned","Applied","Interviewing"
+    "Planned","Applied","Interviewing","Offered","Rejected"
 ]
+const statusEnum = {
+  "Planned": "PLANNED",
+  "Applied": "APPLIED",
+  "Interviewing": "INTERVIEW_SCHEDULED",
+  "Offered": "OFFERED",
+  "Rejected": "REJECTED",
+}
+
+const ADD_APP_QUERY = gql`
+  mutation AddApplication($newAppInfo: NewAppInfo!) {
+    addApplication(newAppInfo: $newAppInfo) {
+      id
+    }
+  }`;
 
 const defaultValues = {
   idEdit : false,
-  company: 'company',
+  company: '',
   status: '',
-  position: 'position',
-  url: 'http://googgle.com',
+  position: '',
+  url: '',
   recentActivity: new Date(),
   notes: null,
 }
@@ -35,6 +53,13 @@ export default JobApplication = ({route,navigation}) => {
 
   const [jobapplication,setJobApplication] = useState(null);
   const [shouldShowDatepicker, setShowDateTimePicker] = useState(false);
+
+  const [addApplication] = useMutation(ADD_APP_QUERY,{
+    onCompleted(result) {
+      console.log("add application mutation executed!", result);
+      MoveToDashboard()
+    }
+  });
 
   console.log("route", route);
   console.log("shouldShowDatepicker", shouldShowDatepicker);
@@ -69,10 +94,21 @@ export default JobApplication = ({route,navigation}) => {
   console.log(errors);
 
   const MoveToDashboard = async () => {
-    navigation.navigate('SocialLogin');
+    navigation.navigate('Home');
   }
-  const onSave = (data) => {
-    console.log("this is the form", data);
+  const onSave = async (data) => {
+    console.log("************* this is the form", data);
+    //console.log("************* this is the user data", userData);
+    const user_id = await getUserID();
+    const newAppInfo = {
+      user_id: user_id,
+      company: data.company,
+      position: data.position,
+      url: data.url,
+      status: statusEnum[data.status],
+      notes: data.notes,
+    };
+    addApplication({ variables: { newAppInfo } });
   }
 
   const onDelete = () => {
@@ -184,7 +220,7 @@ export default JobApplication = ({route,navigation}) => {
             ref= {recentActivityInputRef}  
             editable = {false}      
           />
-          <MainButton onPress={()=> showDatepicker(true) } title="..." />
+          <MainButton onPress={()=> showDatepicker(true) } text="..." />
           { shouldShowDatepicker && <DateTimePicker
             testID="dateTimePicker"
             value={value}
@@ -245,11 +281,11 @@ export default JobApplication = ({route,navigation}) => {
     <View style={JobApplicationStyles.buttonContainer}>
       <View style={JobApplicationStyles.button} >
         {
-          jobapplication.idEdit ? <MainButton title="Delete" onPress={() => onDelete()} /> : <MainButton title="Cancel" onPress={() => MoveToDashboard()} />
+          jobapplication.idEdit ? <MainButton text="Delete" onPress={() => onDelete()} /> : <MainButton title="Cancel" onPress={() => MoveToDashboard()} />
         }        
       </View> 
       <View style={JobApplicationStyles.button} >
-        <MainButton title="Save" onPress={handleSubmit(onSave)} />
+        <Button title="Save" onPress={handleSubmit(onSave)} />
       </View>
     </View>
     
