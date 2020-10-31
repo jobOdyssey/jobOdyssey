@@ -1,25 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {View, TouchableOpacity, Text, Linking} from 'react-native';
-
-import {InputBox, MainButton, ThemeSetting} from '../components';
-import {LoginStyles} from '../theme';
-
-import {useGlobalActionDispatch} from '../state/global'
-
+import AwesomeAlert from 'react-native-awesome-alerts';
+import {Linking, StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
 
-import SocialLogin from './sociallogin';
+import Constants from '../../env'
+import {InputBox, MainButton} from '../components';
+import UiTheme from './changetheme';
+import {LoginStyles} from '../theme';
+
+import {useAppGlobalState} from '../state/global'
 
 import {  SetUserSession, printAllCookies } from '../Helpers/apihelper'
-/*
-export const LOGIN_USER  = gql`
-mutation Login($username: String, $password: String)	{
-  login(loginInfo: { username: $username, password: $password }) {
-     errors
-     user { id }
-  }
-}`
-*/
 
 const USER_QUERY = gql`
  query { getCurrentUser {
@@ -31,23 +22,28 @@ const USER_QUERY = gql`
 }`
 
 export const LOGIN_USER  = gql`
-mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    user {
-      id
-      email
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      user {
+        id
+        email
+      }
     }
   }
-}
 `;
 
-
 export default LoginScreen = ({navigation}) => {
+
+  const glbState = useAppGlobalState();
+
   const [email, setEmail] = useState(() => '');
   const [password, setPassword] = useState(() => '');
+  const [showAlert, setShowAlert] = useState(() => false);
+  const [alertMessage, setAlertMessage] = useState(() => '')
+  
   const [loginUser] = useMutation(LOGIN_USER,{
     onCompleted(user) {
-      console.log("mutation executed!",  user);
+      console.log("login user mutation executed!",  user);
       if (user) {
         moveToHome();  
       }
@@ -56,13 +52,15 @@ export default LoginScreen = ({navigation}) => {
 
   const [fetchData, { data, refetch, loading, error }] = useLazyQuery(USER_QUERY);
 
-  const disPatchAction = useGlobalActionDispatch();
-
   useEffect(() => {        
+    async function validateCookies() {
+      const validatedResult = await printAllCookies();
+      console.log('validating cookie')
+      // fetchData();
+    }
     console.log("on login page")
-    Linking.addEventListener('url', handleOpenURL);   
-    printAllCookies(); 
-    fetchData();
+    Linking.addEventListener('url', handleOpenURL);
+    validateCookies();
   }, []);
 
   const handleOpenURL = async ({ url }) => {
@@ -72,28 +70,51 @@ export default LoginScreen = ({navigation}) => {
         await SetUserSession(url); // important          
         moveToHome();   
     }
-};
+  };
 
-  const changeGlobalThemeState = () => {
-    disPatchAction({
-      type: 'changeAppGlobalTheme',
-    })
-  }
+  const socialStyles = StyleSheet.create({
+    body: {
+      backgroundColor: glbState.state.themeScheme.primary,
+    },
+    socialBtn: {
+      margin: 30,
+      backgroundColor: glbState.state.themeScheme.primary,
+      paddingVertical: 10,
+    },
+    buttonText: {
+      color: '#fff',
+      fontWeight: 'bold',
+      textAlign: 'center'
+    },
+    imageContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
 
   const performLogin = async () => {
     console.log("calling mutation with params", email, password);
-    loginUser({ variables: { email: email, password: password   } });
+    try {
+      await loginUser({ variables: { email: email, password: password   } });
+    } catch (err) {
+      setAlertMessage('User does not exist')
+      setShowAlert(true);
+    }
   };
 
   const moveToHome = () => navigation.navigate('Home');
 
   const socialLoginReder = () => {
     if (!data || !data.getCurrentUser){
-      return <View><TouchableOpacity style={LoginStyles.buttons}
-          onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}>
-          <Text >{ "Connect via Google" }</Text>
-        </TouchableOpacity>
+      return (
+        <View>
+          <TouchableOpacity style={socialStyles.socialBtn}
+            onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}
+            >
+            <Text style={socialStyles.buttonText}>{ "Connect via Google" }</Text>
+          </TouchableOpacity>
         </View>
+      )
     } else {
       setTimeout(() => moveToHome(), 500)
       return null;
@@ -102,9 +123,7 @@ export default LoginScreen = ({navigation}) => {
 
   return (
     <View>
-      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-          <ThemeSetting onPress={changeGlobalThemeState} icon={'brightness-4'}/>
-      </View>
+      <UiTheme></UiTheme>
       <View style={LoginStyles.board}>
         <InputBox label="Email" text={email} setText={text => setEmail(text)} />
         <InputBox
@@ -125,7 +144,30 @@ export default LoginScreen = ({navigation}) => {
           loading ? <Text>Loading ...</Text> : socialLoginReder()         
         }
         </View>        
-  
+        <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title="Login"
+          message={alertMessage}
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={true}
+          showConfirmButton={false}
+          cancelText="Ok"
+          confirmText="Yes, Ok"
+          confirmButtonColor={glbState.state.themeScheme.primary}
+          cancelButtonColor={glbState.state.themeScheme.error}
+          onCancelPressed={() => {
+            setShowAlert(false)
+            setEmail('')
+            setPassword('')
+          }}
+          onConfirmPressed={() => {
+            setShowAlert(false)
+            setEmail('')
+            setPassword('')
+          }}
+        />
     </View>
   );
 }

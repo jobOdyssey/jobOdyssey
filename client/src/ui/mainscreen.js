@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as PaperProvider} from 'react-native-paper';
 
-import {HomeScreen, JobApplication, LoginScreen, SignupScreen, SocialLogin} from '.';
+import {HomeScreen, JobApplication, JobApplicationDetails, LoginScreen, SignupScreen, SocialLogin} from '.';
 import {useAppGlobalState} from '../state/global';
 
 // console.log("LoginScreen",LoginScreen)
@@ -19,7 +19,7 @@ const MainScreen = () => {
   
   return (
     <PaperProvider theme={glbState.state.appTheme}>
-      <NavigationContainer>
+      <NavigationContainer theme={glbState.state.appTheme}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             name="Login"
@@ -27,7 +27,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581',
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -41,7 +41,7 @@ const MainScreen = () => {
             options={{
               title: 'Log In',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -55,7 +55,7 @@ const MainScreen = () => {
             options={{
               title: 'Sign Up',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -67,9 +67,9 @@ const MainScreen = () => {
             name="Home"
             component={HomeScreen}
             options={{
-              title: 'Jobs....',
+              title: '',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -81,9 +81,23 @@ const MainScreen = () => {
             name="JobApplication"
             component={JobApplication}
             options={{
-              title: 'JobApplication....',
+              title: 'Add Job Application',
               headerStyle: {
-                backgroundColor: glbState.state.themeScheme.primary//,'#aed581', 
+                backgroundColor: glbState.state.themeScheme.primary
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="JobApplicationDetails"
+            component={JobApplicationDetails}
+            options={{
+              title: 'Job Application Details',
+              headerStyle: {
+                backgroundColor: glbState.state.themeScheme.primary
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
