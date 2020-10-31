@@ -154,7 +154,6 @@ export const JobApplicationStyles = StyleSheet.create({
       padding: 10,
     },
   scrollView: {
-      backgroundColor: 'pink',
       marginHorizontal: 5,
   },
   container: {

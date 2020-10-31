@@ -19,7 +19,7 @@ const MainScreen = () => {
   
   return (
     <PaperProvider theme={glbState.state.appTheme}>
-      <NavigationContainer>
+      <NavigationContainer theme={glbState.state.appTheme}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             name="Login"
