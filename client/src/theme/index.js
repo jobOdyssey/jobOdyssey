@@ -28,14 +28,17 @@ export const GlobalTheme = {
   },
 }
 
-export const HomeStyles = StyleSheet.create({
-          board: {
-            position: 'absolute',
-            margin: 16,
-            right: 0,
-            bottom: 0,
-          },
-        });
+export const HomeStyles = (themeScheme) => { 
+  return StyleSheet.create({
+    board: {
+      position: 'absolute',
+      margin: 16,
+      right: 0,
+      bottom: 0,
+      backgroundColor: themeScheme.primary,
+    },
+  })
+};
 
 export const LoginStyles = StyleSheet.create({
   bigBlue: {

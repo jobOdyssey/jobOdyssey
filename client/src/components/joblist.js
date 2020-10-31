@@ -6,8 +6,8 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useAppGlobalState} from '../state/global'
 
-const ApplicationBoard = ({props}) => {
-
+const ApplicationBoard = ({applicationList}) => {
+  
   const glbState = useAppGlobalState();
 
   const [expandApplication, setExpandApplication] = useState(() => true);
@@ -40,7 +40,7 @@ const ApplicationBoard = ({props}) => {
         expanded={true}
         onPress={setApplicationExpandedState}
         left={(appIcon) => <List.Icon {...appIcon} icon="thumb-up-outline" />}>
-        <FlatList data={props.applicationList} renderItem={renderApplicationToScreen} />
+        <FlatList data={applicationList} renderItem={renderApplicationToScreen} />
       </List.Accordion>
     </List.Section>
   )

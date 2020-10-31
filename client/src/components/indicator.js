@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator} from 'react-native-paper';
 import {useAppGlobalState} from '../state/global';
 
-const BusyIndicator = ({props}) => {
+const BusyIndicator = (props) => {
   const glbState = useAppGlobalState();
   return (
     <ActivityIndicator

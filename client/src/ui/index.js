@@ -1,3 +1,4 @@
+import UiTheme from './changetheme';
 import HomeScreen from './home';
 import LoginScreen from './login';
 import SignupScreen from './signup';
@@ -7,4 +8,4 @@ import SocialLogin from './sociallogin';
 
 //const SocialLoginScreen = {};
 
-export {HomeScreen, JobApplication, JobApplicationDetails, LoginScreen, SignupScreen, SocialLogin} 
+export {HomeScreen, JobApplication, JobApplicationDetails, LoginScreen, SignupScreen, SocialLogin, UiTheme} 
