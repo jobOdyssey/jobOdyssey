@@ -10,6 +10,8 @@ import userRouter from './routes/user.js'
 import jobapplicationRouter from './routes/jobapplication.js'
 
 import apollo from 'apollo-server-express';
+import graphqlPassport from 'graphql-passport';
+const { buildContext } = graphqlPassport;
 
 console.log("apollo!!", apollo);
 
@@ -65,10 +67,8 @@ userRouter
 // Apollo Server setup
 const apolloServer = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: ({ req, res }) => ({ req, res, 
-    getUser: () => req.user,  
-    logout: () => req.logout() }),
+  resolvers,  
+  context: ({ req, res }) => buildContext({ req, res })
 });
 
 

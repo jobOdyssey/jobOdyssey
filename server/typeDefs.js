@@ -36,6 +36,10 @@ const typeDefs = gql`
     user: User
   }
 
+  type AuthPayload {
+    user: User
+  }
+
   # Application type
   type Application {
     id: ID!
@@ -95,7 +99,8 @@ const typeDefs = gql`
     addApplication(newAppInfo: NewAppInfo!): Application
     editApplication(editedAppInfo: EditedAppInfo!): Application
     archiveApplication(id: ID!): Application
-    login(loginInfo: LoginInfo!): LoginResponse
+    #login(loginInfo: LoginInfo!): LoginResponse
+    login(email: String!, password: String!): AuthPayload
     test: User
   }
 `;

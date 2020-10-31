@@ -68,7 +68,20 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: async (parent, { loginInfo }) => {
+    login: async (parent, { email, password }, context) => {
+      console.log("context req user from login",context.getUser())
+      const { user } = await context.authenticate('graphql-local', { email, password });
+      await context.login(user);
+      return { user }
+    },
+    /*
+    login: async (parent, { loginInfo }, context) => {
+      console.log("context req user from login",context.getUser())
+      const { user } = await context.authenticate('graphql-local', { email: loginInfo.username, password: loginInfo.password });
+      const errors = [];
+      await context.login(user);
+      return { errors, user }
+
       const { username, password } = loginInfo;
       const errors = [];
       const user = await User.findOne({
@@ -81,7 +94,9 @@ const resolvers = {
         errors.push('Invalid login credentials');
       }
       return { errors, user };
+      
     },
+    */
     addUser: async (parent, { userInfo }) => {
       const { username, password, email } = userInfo;
       return bcrypt
@@ -136,6 +151,7 @@ const resolvers = {
       return archivedApp[1][0].dataValues;
     },
     test: async (parent, args, context, info) => {
+      console.log("test mutation call");
       const newUser = await User.create({ username: 't', password: 't', email: 't' });
       return newUser;
     },
