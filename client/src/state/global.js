@@ -1,31 +1,34 @@
 import React from 'react';
 import {DefaultTheme} from 'react-native-paper';
-import {Platform, StatusBar} from 'react-native'
+import {StatusBar} from 'react-native'
 
 import {GlobalTheme} from '../theme';
 
 
-export const initialGlobalState = {
-  themeName: 'light',
-  themeScheme: GlobalTheme.light,
-  appTheme: {
-    ...DefaultTheme,
-    roundness: 2,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: GlobalTheme.light.primary,
-      accent: GlobalTheme.light.accent,
-    },
-    dark: false,
+export const initialGlobalState = () => { 
+  StatusBar.setBarStyle('light-content', true)  
+  return {
+      themeName: 'light',
+      themeScheme: GlobalTheme.light,
+      appTheme: {
+        ...DefaultTheme,
+        roundness: 2,
+        colors: {
+          ...DefaultTheme.colors,
+          primary: GlobalTheme.light.primary,
+          accent: GlobalTheme.light.accent,
+        },
+        dark: false,
+    }
   }
-}
+};
 
 const globalReducer = (state, action) => {
   switch (action.type) {
     case 'changeAppGlobalTheme':
       let globalTheme;
       let themeScheme;
-      Platform.OS === 'ios' && StatusBar.setBarStyle(state.themeName + '-content', true)
+      StatusBar.setBarStyle(state.themeName + '-content', true);
       if (state.themeName === 'light') {
         globalTheme = 'dark'
         themeScheme = GlobalTheme.dark
@@ -57,7 +60,7 @@ const GlobalStateContext = React.createContext(globalReducer)
 const DispatchGlobalContext = React.createContext(() => 0)
 
 export const GlobalProvider = ({children}) => {
-  const [state, dispatch] = React.useReducer(globalReducer, initialGlobalState);
+  const [state, dispatch] = React.useReducer(globalReducer, initialGlobalState());
   const [user, setUser] = React.useState(() => ({userId: 'mee', userData: 'ok'}));
 
   const updateUser = (newUserDetails) => {

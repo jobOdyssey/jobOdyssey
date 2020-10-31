@@ -15,11 +15,19 @@ const resolvers = {
     hello: async (parent, { }, context) => {
       console.log("cookies ", context.req.cookies);
       // if user not authenticated return null and status 403
-      if (!context.getUser()){        
-        context.res.status(403);
+      if (!context.getUser()){  
+        console.log("there is NOT a user!")      
+        //context.res.status(403);
         return null;
       }
+      console.log("there is a user!")      
       return 'hello world!'
+    },
+    getCurrentUser: async (parent, { }, context) => {
+      console.log("currentUSER query!!")
+      console.log("context req user",context.getUser())
+      console.log("cookies ", context.req.cookies);
+      return context.getUser();
     },
     getAllUsers: async () => {
       const allUsers = await User.findAll();

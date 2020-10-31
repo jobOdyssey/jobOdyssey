@@ -6,6 +6,18 @@ import AsyncStorage from '@react-native-community/async-storage';
 const API_URL = `${Constants.SERVER_URL}/api`;
 console.log("SERVER_URL",Constants.SERVER_URL)
 
+const printAllCookies = () => {
+  CookieManager.get(Constants.SERVER_URL)
+  .then((cookies) => {
+    console.log('CookieManager.get =>', cookies);
+  });
+}
+
+const clearCookies = () => {
+  console.log("clearing cookies");
+  CookieManager.clearAll();  
+}
+
 const getParams = (url) => {
     const regex = /[?&]([^=#]+)=([^&#]*)/g;
     const params = {};
@@ -30,20 +42,18 @@ const SetUserSession = async (url) => {
   CookieManager.set(Constants.SERVER_URL, {
     name: 'express:sess.sig',
     value: params.sig,
-    domain: 'some domain',
     path: '/'        
   }).then((done) => {
     console.log('CookieManager.set express:sess.sig=>', done);
-  });
+  }).catch(err=> console.log("CookieManager.set express:sess.sig error",err));
 
   CookieManager.set(Constants.SERVER_URL, {
     name: 'express:sess',
     value: params.session,
-    domain: 'some domain',
     path: '/'        
   }).then((done) => {
     console.log('CookieManager.set express:sess=>', done);
-  });
+  }).catch(err=> console.log("CookieManager.set express:sess error",err));
 
   console.log("Session Stored!")
 }
@@ -82,4 +92,4 @@ const GetJobApplications = () => {
   }).then(res => res.json());
 }
 
-export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications }
+export { SetUserSession, GetUserInfo, GetJobApplication , GetJobApplications, clearCookies, printAllCookies }

@@ -3,7 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity,  
   Linking,
   View,
   Text,
@@ -11,17 +11,34 @@ import {
   Image,
  } from 'react-native';
 
- import {
+import {
   Header,
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { GetJobApplication , SetUserSession, GetUserInfo } from '../Helpers/apihelper'
+import { GetJobApplication , SetUserSession, GetUserInfo, clearCookies, printAllCookies } from '../Helpers/apihelper'
 
 import Constants from '../../env'
 
+import { gql, useQuery, useLazyQuery } from '@apollo/client'
+
+const USER_QUERY = gql`
+ query { getCurrentUser {
+  id
+  social_id
+  username
+  email
+ }  
+}`
+
+console.log("SERVER_URL",Constants.SERVER_URL)
+
+
 const SocialLogin = ({navigation}) => {    
-  const [userData,setUserData] = useState(null);
+  // const [userData,setUserData] = useState(null);
+  const [fetchData, { data, refetch, loading, error }] = useLazyQuery(USER_QUERY);
+
+  console.log('refetch function', refetch);
 
   const lookForUserInfo = () => {    
     GetUserInfo()
@@ -33,19 +50,43 @@ const SocialLogin = ({navigation}) => {
       setUserData(null);
     });      
   }
-
-  const handleOpenURL = ({ url }) => {
+    const handleOpenURL = async ({ url }) => {
       if (url.indexOf("?sig") !== -1) {        
-          console.log("redirect succesfull");          
-          SetUserSession(url);         
-          lookForUserInfo();
+          console.log("redirect succesfull");  
+          console.log('navigation ', navigation);
+          await SetUserSession(url); // important
+          //GetUserInfo().then( user => console.log("getting user", user)).catch(err => console.log("error getting user", err));
+          //navigation.navigate('UserProfile');              
+          navigation.navigate('Home');    
       }
   };
 
-  useEffect(() => {    
-    Linking.addEventListener('url', handleOpenURL);
-    lookForUserInfo();
+  useEffect(() => {        
+    console.log("on login page")
+    Linking.addEventListener('url', handleOpenURL);   
+    printAllCookies(); 
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <Text>Loading ...</Text> 
+  }
+
+  // if (error) return<Text> { `Error! ${error}` } </Text>;
+  console.log("data!!!!", data);
+  console.log("error!!! :" , error)
+
+  const renderUserOpt = (usrMthdObj) => {
+    console.log('renderUserOpt data :: ', usrMthdObj);
+    if (!usrMthdObj || !usrMthdObj.getCurrentUser) {
+      return <></>
+    }
+    return (
+      <View style={styles.imageContainer}>
+      <Text>Welcome { data.getCurrentUser.username }</Text>
+    </View>
+    )
+  }
 
   return (
      <>
@@ -54,27 +95,12 @@ const SocialLogin = ({navigation}) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-            {
-             userData === null ? null :  <View style={styles.imageContainer}>
-            <Text>Welcome { userData.name.givenName }</Text>   
-            <Image
-             style={{width: 50, height:50}}
-             source={{uri: userData.photos[0].value}}             
-             />            
-             </View>
-            }          
+          {renderUserOpt(data)}          
           <View style={styles.body}>
             <TouchableOpacity style={styles.socialBtn}
               onPress={() => Linking.openURL(`${Constants.SERVER_URL}/auth/google`)}>
               <Text style={styles.buttonText} >
-                {userData === null ? "Connect via Google" : "You are connected !"}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.body}>
-            <TouchableOpacity style={styles.socialBtn}
-              onPress={() => navigation.navigate('JobApplication', { jobApplicationID: 35})}>
-              <Text style={styles.buttonText} >
-                {"Move to Edit"}</Text>
+                {!data || !data.getCurrentUser ? "Connect via Google" : "You are connected !"}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
